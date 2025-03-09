@@ -53,6 +53,7 @@ def process_taobao_file(file_path, target_directory):
         "淘宝-先用后付服务费":["淘宝-先用后付服务费"],
         "淘宝-转运物流费":["商家集运"],
         "淘宝-每日必买服务费":["每日必买"],
+        "淘宝-物流轨迹异常":["淘宝物流轨迹异常"],
         "淘工厂-托管充值":["账户充值-工作台充值","账户充值-手动充值","账户充值-自动充值"],
         "淘工厂-促销费":["直营&联营&营促销"],
         # "淘工厂-好评返现":["评价有礼"],
@@ -70,6 +71,9 @@ def process_taobao_file(file_path, target_directory):
         "网商贷-放款":["网商贷-放款"],
         "网商贷-还款":["网商贷-还款", "网商银行扣款"],
         "支付宝-花呗还款": ["花呗|信用购"],
+        "淘工厂-技术服务费": ["扣款用途：C2M-技术服务费"],
+        "淘工厂-转运物流费": ["新疆物流集运"],
+        # "淘工厂-违约赔付": ["淘宝物流轨迹异常"],
     }
 
     # 函数来根据关键字确定分类
@@ -116,6 +120,9 @@ def process_taobao_file(file_path, target_directory):
         
         if "花呗" in remark and "还款" in remark:
             return "支付宝-花呗还款";
+        
+        if "淘特直营商家管理保证金" in remark and "违约金扣罚" in remark:
+            return "淘工厂-违约赔付";
         
         # 检查备注中的关键字
         for category, keywords in category_mapping.items():

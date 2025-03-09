@@ -6,7 +6,7 @@ from datetime import datetime
 def process_taobao_files_in_directory(directory):
     
     timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    target_directory = os.path.join(current_dir, f'output/{timestamp}')
+    target_directory = os.path.join(current_dir, f'output/整理/{timestamp}')
     
     if not os.path.exists(target_directory):
         os.makedirs(target_directory)
@@ -22,5 +22,5 @@ def process_taobao_files_in_directory(directory):
 # 使用示例
 if __name__ == "__main__":
     current_dir = os.getcwd()
-    target_directory = os.path.join(current_dir, 'resource/12月支付宝账单')
+    target_directory = os.path.join(current_dir, 'resource/1月')
     process_taobao_files_in_directory(target_directory)
