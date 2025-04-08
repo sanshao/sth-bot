@@ -22,5 +22,5 @@ def process_taobao_files_in_directory(directory):
 # 使用示例
 if __name__ == "__main__":
     current_dir = os.getcwd()
-    target_directory = os.path.join(current_dir, 'resource/1月')
+    target_directory = os.path.join(current_dir, 'resource/3月淘宝数据')
     process_taobao_files_in_directory(target_directory)

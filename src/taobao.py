@@ -10,7 +10,7 @@ def process_taobao_file(file_path, target_directory):
     xls = pd.ExcelFile(file_path)
 
     # 读取第一个工作表
-    df = pd.read_excel(xls, sheet_name=0, header=4)
+    df = pd.read_excel(xls, sheet_name=0, header=0, skipfooter=0)
 
     # 打印列名以供检查
     print("读取的列名：", df.columns.tolist())
@@ -38,6 +38,7 @@ def process_taobao_file(file_path, target_directory):
         # "淘宝-交易收款":[""],
         "淘宝-交易退款":["淘宝消费者保证金-交易售后", "售后退款-"],
         "淘宝-保证金退款":["保证金退款"],
+        "淘宝-保证金退邮费":["淘宝消费者保证金-充值（代扣）-退货邮费"],
         "淘宝-跨境服务费":["淘宝天猫跨境服务增值费"],
         "淘宝-赔付":[
             "支付宝转账小额打款-关联订单号",
@@ -46,6 +47,7 @@ def process_taobao_file(file_path, target_directory):
             "淘宝消费者保证金-充值（代扣）-延迟发货", "商家权益红包-预算追加-卖家延迟发货赔付红包-赔付红包",
             "商家权益红包-预算追加-淘宝缺货赔付红包-赔付红包"
         ],
+        "淘宝-虚假发货赔付":["预算追加-淘宝虚假发货赔付"],
         "淘宝-品牌护肤赤兔":["代扣-赤兔名"],
         "淘宝-首单拉新":["淘宝新客礼金技术服务费", "品牌新享淘宝老客礼金软件服务费", "品牌新享淘宝限时礼金软件服务费"],
         "淘宝-淘宝客佣金":["淘宝客佣金代扣款", "淘宝联盟推广佣金返还", "淘宝联盟佣金代扣"],
@@ -57,14 +59,14 @@ def process_taobao_file(file_path, target_directory):
         "淘工厂-托管充值":["账户充值-工作台充值","账户充值-手动充值","账户充值-自动充值"],
         "淘工厂-促销费":["直营&联营&营促销"],
         # "淘工厂-好评返现":["评价有礼"],
-        "淘工厂-交易收款":["C2M订单交易货款分账", "C2M-退款赔付-申诉单号"],
+        "淘工厂-交易收款":["C2M订单交易货款分账", "C2M-退款赔付-申诉单号", "订单交易货款分账", "C2M-合作费用-订单号"],
         "淘工厂-交易退款":["分账退回", "淘特直营保证金履约险_追偿款"], 
-        "淘工厂-赔付":["天猫售后赔付", "因物流轨迹异常-物流停滞原因 扣罚", "因延迟发货原因 扣罚"],
+        "淘工厂-赔付":["天猫售后赔付", "因物流轨迹异常-物流停滞原因 扣罚", "因延迟发货原因 扣罚", "扣款用途：C2M-处罚赔付"],
         "淘工厂-商家出资补贴":["正向扣款-商家出资补贴", "逆向退款-商家出资补贴"],
         "淘工厂-赠品营销费": ["正向扣款-买赠赠品营销费用", "逆向退款-买赠赠品营销费用"],
         "淘工厂-淘宝佣金":["正向扣佣-精选淘客-", "红包签到供应商cps佣金"],
         "淘工厂-托管费":["商品运营托管推广服务费"],
-        "淘工厂-托管充值":["扣款用途：账户充值-工作台充值"],
+        "淘工厂-托管账户充值":["扣款用途：账户充值-工作台充值", "扣款用途：账户充值-自动充值"],
         "淘工厂-先用后付":["先用后付技术服务费"],
         "淘工厂-运费险":["退货包运费代扣"],
         # "提现":[""],
@@ -100,10 +102,14 @@ def process_taobao_file(file_path, target_directory):
             return "千橙食品赤兔";
         
         # 根据业务类型判断
-        if business_type == "交易付款":
+        if business_type == "交易付款" or "基金代发任务" in remark:
             return "淘宝-交易收款";
         elif business_type == "提现":
             return "提现";
+        elif business_type == "结息":
+            return "结息";
+        elif business_type == "在线支付":
+            return "在线支付";
         
         if counterparty == "*骁(dux***@gmail.com)" and remark == "转账":
             return "海那边-转账";
@@ -113,6 +119,10 @@ def process_taobao_file(file_path, target_directory):
             return "小木登子-转入";
         elif counterparty == "**振(156******90)" and remark == "转账":
             return "赵振";
+        elif counterparty == "杭州昌诚电子商务有限公司(ydbbzj@service.aliyun.com)" and remark == "转账":
+            return "一大包零食交保证金";
+        elif counterparty == "杭州淘宝直播严选电子商务有限公司(qdzfb@service.aliyun.com)" and remark == "转账":
+            return "88VIP货款";
         elif counterparty == "**婧(150******97)" and remark == "转账" and pay_amount < 0:
             return "大C店-转出";
         elif counterparty == "**婧(150******97)" and remark == "转账" and income_amount > 0:
