@@ -10,7 +10,7 @@ def process_taobao_file(file_path, target_directory):
     xls = pd.ExcelFile(file_path)
 
     # 读取第一个工作表
-    df = pd.read_excel(xls, sheet_name=0, header=0, skipfooter=0)
+    df = pd.read_excel(xls, sheet_name=0, header=4, skipfooter=4)
 
     # 打印列名以供检查
     print("读取的列名：", df.columns.tolist())

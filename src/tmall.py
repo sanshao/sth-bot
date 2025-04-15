@@ -10,7 +10,7 @@ def process_tmall_file(file_path, target_directory):
     xls = pd.ExcelFile(file_path)
 
     # 读取第一个工作表
-    df = pd.read_excel(xls, sheet_name=0, header=0, skipfooter=0)
+    df = pd.read_excel(xls, sheet_name=0, header=4, skipfooter=4)
 
     # 打印列名以供检查
     print("读取的列名：", df.columns.tolist())
@@ -78,7 +78,8 @@ def process_tmall_file(file_path, target_directory):
         "淘宝买菜-退货包运费":["代扣款（扣款用途：退货包运费服务费"],
         "淘宝买菜-商家处罚":["代扣款（扣款用途：商家处罚"],
         "淘宝买菜-佣金":["代扣款（扣款用途：佣金"],
-        "淘宝买菜-交易收款":["货款{"]
+        "淘宝买菜-交易收款":["货款{"],
+        "淘宝买菜-托管费":["营销合作费{"]
     }
 
     # 函数来根据关键字确定分类
