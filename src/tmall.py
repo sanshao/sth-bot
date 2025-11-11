@@ -29,6 +29,9 @@ def process_tmall_file(file_path, target_directory):
         # "88VIP结算款":["88VIP结算款"],
         # "结息":["基金代发任务"],
         "天猫-百亿服务费":["百亿补贴软件服务费"],
+        "天猫-多买多省":["多买多省"],
+        "天猫-限时红包":["限时红包"],
+        "天猫-淘金币":["淘金币"],
         "天猫-保险费":["消费者体验提升计划服务费", "保险承保", "保险理赔"],
         "天猫-保证金解冻":["天猫保证金-解冻"],
         "天猫-保证金赔付": ["天猫保证金-充值（代扣）-缺货", "天猫保证金-充值（代扣）-红包冻结", "天猫保证金-充值（代扣）-未按时开具发票"],
@@ -82,7 +85,8 @@ def process_tmall_file(file_path, target_directory):
         "淘宝买菜-托管费":["营销合作费{"]
     }
 
-    # 函数来根据关键字确定分类
+    # 定义税率
+    tax_rate = ''
 
     # 函数来根据关键字确定分类
     def assign_category(row):
@@ -105,6 +109,7 @@ def process_tmall_file(file_path, target_directory):
         
         # 根据业务类型判断
         if business_type == "交易付款" or "基金代发任务" in remark:
+            # 
             return "天猫-交易收款";
         elif business_type == "提现":
             return "提现";

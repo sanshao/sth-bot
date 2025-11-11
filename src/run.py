@@ -12,7 +12,7 @@ def process_taobao_files_in_directory(directory):
         os.makedirs(target_directory)
         
     for file_name in os.listdir(directory):
-        if file_name.startswith("淘宝") and file_name.endswith(".xlsx"):
+        if file_name.startswith("淘") and file_name.endswith(".xlsx"):
             file_path = os.path.join(directory, file_name)
             process_taobao_file(file_path, target_directory)
         elif file_name.startswith("天猫") and file_name.endswith(".xlsx"):
@@ -22,5 +22,5 @@ def process_taobao_files_in_directory(directory):
 # 使用示例
 if __name__ == "__main__":
     current_dir = os.getcwd()
-    target_directory = os.path.join(current_dir, 'resource/4月')
+    target_directory = os.path.join(current_dir, 'resource/10月补充')
     process_taobao_files_in_directory(target_directory)
