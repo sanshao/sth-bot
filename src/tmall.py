@@ -134,7 +134,8 @@ def process_tmall_file(file_path, target_directory):
             return "大C店-转入";
         elif counterparty == "上海菜菜超市有限公司(tccsyt@service.aliyun.com)" and '先用后付技术服务费' in remark:
             return "淘宝买菜-先用后付服务费";
-    
+        elif counterparty == "上海菜菜超市有限公司(tccsyt@service.aliyun.com)" and '直营&联营&营促销' in remark:
+            return "淘宝买菜-促消费";
         
         if "DDD商家结算款" in remark and "扣款用途" not in remark:
             return "天猫超市-交易收款";
