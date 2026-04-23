@@ -1,6 +1,7 @@
 import pandas as pd
 import os
 from datetime import datetime
+from category_rules import assign_category_by_rules, build_keyword_rules
 
 
 def process_taobao_file(file_path, target_directory):
@@ -81,71 +82,129 @@ def process_taobao_file(file_path, target_directory):
         # "淘工厂-违约赔付": ["淘宝物流轨迹异常"],
     }
 
-    # 函数来根据关键字确定分类
+    explicit_rules = [
+        {
+            "category": "淘宝-保证金充值",
+            "condition": {
+                "any": [
+                    {"field": "备注", "op": "eq", "value": "淘宝消费者保证金-充值（代扣）"},
+                    {"field": "备注", "op": "eq", "value": "淘宝消费者保证金-充值"},
+                ]
+            },
+        },
+        {"category": "淘工厂-直通车充值", "condition": {"field": "商品名称", "op": "contains", "value": "万相台无界版扫码充值"}},
+        {"category": "门道商家助手-基础版-订单付款", "condition": {"field": "商品名称", "op": "contains", "value": "门道商家助手-基础版-订单付款"}},
+        {"category": "千橙食品赤兔", "condition": {"field": "商品名称", "op": "contains", "value": "赤兔名品客服绩效"}},
+        {
+            "category": "淘宝-交易收款",
+            "condition": {
+                "any": [
+                    {"field": "业务类型", "op": "eq", "value": "交易付款"},
+                    {"field": "备注", "op": "contains", "value": "基金代发任务"},
+                ]
+            },
+        },
+        {"category": "提现", "condition": {"field": "业务类型", "op": "eq", "value": "提现"}},
+        {"category": "结息", "condition": {"field": "业务类型", "op": "eq", "value": "结息"}},
+        {"category": "在线支付", "condition": {"field": "业务类型", "op": "eq", "value": "在线支付"}},
+        {
+            "category": "海那边-转账",
+            "condition": {
+                "all": [
+                    {"field": "对方账号", "op": "eq", "value": "*骁(dux***@gmail.com)"},
+                    {"field": "备注", "op": "eq", "value": "转账"},
+                ]
+            },
+        },
+        {
+            "category": "报销-丁庆飞",
+            "condition": {
+                "all": [
+                    {"field": "对方账号", "op": "eq", "value": "**飞(165***@qq.com)"},
+                    {"field": "备注", "op": "eq", "value": "转账"},
+                ]
+            },
+        },
+        {
+            "category": "小木登子-转入",
+            "condition": {
+                "all": [
+                    {"field": "对方账号", "op": "eq", "value": "*璁(cao***@aliyun.com)"},
+                    {"field": "备注", "op": "eq", "value": "转账"},
+                ]
+            },
+        },
+        {
+            "category": "赵振",
+            "condition": {
+                "all": [
+                    {"field": "对方账号", "op": "eq", "value": "**振(156******90)"},
+                    {"field": "备注", "op": "eq", "value": "转账"},
+                ]
+            },
+        },
+        {
+            "category": "一大包零食交保证金",
+            "condition": {
+                "all": [
+                    {"field": "对方账号", "op": "eq", "value": "杭州昌诚电子商务有限公司(ydbbzj@service.aliyun.com)"},
+                    {"field": "备注", "op": "eq", "value": "转账"},
+                ]
+            },
+        },
+        {
+            "category": "88VIP货款",
+            "condition": {
+                "all": [
+                    {"field": "对方账号", "op": "eq", "value": "杭州淘宝直播严选电子商务有限公司(qdzfb@service.aliyun.com)"},
+                    {"field": "备注", "op": "eq", "value": "转账"},
+                ]
+            },
+        },
+        {
+            "category": "大C店-转出",
+            "condition": {
+                "all": [
+                    {"field": "对方账号", "op": "eq", "value": "**婧(150******97)"},
+                    {"field": "备注", "op": "eq", "value": "转账"},
+                    {"field": "支出金额（-元）", "op": "<", "value": 0},
+                ]
+            },
+        },
+        {
+            "category": "大C店-转入",
+            "condition": {
+                "all": [
+                    {"field": "对方账号", "op": "eq", "value": "**婧(150******97)"},
+                    {"field": "备注", "op": "eq", "value": "转账"},
+                    {"field": "收入金额（+元）", "op": ">", "value": 0},
+                ]
+            },
+        },
+        {
+            "category": "支付宝-花呗还款",
+            "condition": {
+                "all": [
+                    {"field": "备注", "op": "contains", "value": "花呗"},
+                    {"field": "备注", "op": "contains", "value": "还款"},
+                ]
+            },
+        },
+        {
+            "category": "淘工厂-违约赔付",
+            "condition": {
+                "all": [
+                    {"field": "备注", "op": "contains", "value": "淘特直营商家管理保证金"},
+                    {"field": "备注", "op": "contains", "value": "违约金扣罚"},
+                ]
+            },
+        },
+    ]
 
-    # 函数来根据关键字确定分类
-    def assign_category(row):
-        # 从各个相关列获取字符串
-        item_name = str(row['商品名称']).strip()  # 请确认“商品名称”列名
-        business_type = str(row['业务类型']).strip()  # 请确认“业务类型”列名
-        remark = str(row['备注']).strip()  # 请确认“备注”列名
-        counterparty = str(row['对方账号']).strip()  # 请确认“对方账号”列名        
-        pay_amount = row['支出金额（-元）']; # 支出金额
-        income_amount = row['收入金额（+元）']; # 收入金额
-        
-        # "淘宝-保证金充值":["淘宝消费者保证金-充值（代扣）", "淘宝消费者保证金-充值（代扣）"],
-        if remark == "淘宝消费者保证金-充值（代扣）" or remark == "淘宝消费者保证金-充值":
-            return "淘宝-保证金充值";
-        
-        if "万相台无界版扫码充值" in item_name:
-            return "淘工厂-直通车充值";
-        elif "门道商家助手-基础版-订单付款" in item_name:
-            return "门道商家助手-基础版-订单付款";
-        elif "赤兔名品客服绩效" in item_name:
-            return "千橙食品赤兔";
-        
-        # 根据业务类型判断
-        if business_type == "交易付款" or "基金代发任务" in remark:
-            return "淘宝-交易收款";
-        elif business_type == "提现":
-            return "提现";
-        elif business_type == "结息":
-            return "结息";
-        elif business_type == "在线支付":
-            return "在线支付";
-        
-        if counterparty == "*骁(dux***@gmail.com)" and remark == "转账":
-            return "海那边-转账";
-        elif counterparty == "**飞(165***@qq.com)" and remark == "转账":
-            return "报销-丁庆飞";
-        elif counterparty == "*璁(cao***@aliyun.com)" and remark == "转账":
-            return "小木登子-转入";
-        elif counterparty == "**振(156******90)" and remark == "转账":
-            return "赵振";
-        elif counterparty == "杭州昌诚电子商务有限公司(ydbbzj@service.aliyun.com)" and remark == "转账":
-            return "一大包零食交保证金";
-        elif counterparty == "杭州淘宝直播严选电子商务有限公司(qdzfb@service.aliyun.com)" and remark == "转账":
-            return "88VIP货款";
-        elif counterparty == "**婧(150******97)" and remark == "转账" and pay_amount < 0:
-            return "大C店-转出";
-        elif counterparty == "**婧(150******97)" and remark == "转账" and income_amount > 0:
-            return "大C店-转入";
-        
-        if "花呗" in remark and "还款" in remark:
-            return "支付宝-花呗还款";
-        
-        if "淘特直营商家管理保证金" in remark and "违约金扣罚" in remark:
-            return "淘工厂-违约赔付";
-        
-        # 检查备注中的关键字
-        for category, keywords in category_mapping.items():
-            if any(keyword in remark for keyword in keywords):
-                return category
-
-        return '其它-未分类'  # 默认分类
+    rules = explicit_rules + build_keyword_rules(category_mapping, field="备注")
 
     # 添加分类列
-    df['分类'] = df.apply(assign_category, axis=1)
+    df['分类'] = df.apply(lambda row: assign_category_by_rules(row, rules), axis=1)
 
     # 调整列顺序，将“净值”列放在“支出金额（-元）”后、账户余额之前
     columns_order = list(df.columns)
@@ -181,4 +240,3 @@ def process_taobao_file(file_path, target_directory):
         pivot_table.to_excel(writer, sheet_name='透视', index=False)
 
     print(f"处理完成！新文件生成: {new_file_path}")
-
