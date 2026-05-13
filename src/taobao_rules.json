@@ -44,6 +44,38 @@
         }
     },
     {
+        "category": "淘宝-交易收款平台补贴",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "百补合作费用超级版"
+        }
+    },
+    {
+        "category": "淘宝-百亿服务费百补特定软件",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "百补特定软件服务"
+        }
+    },
+    {
+        "category": "淘宝-百亿服务费百补超链增值",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "百补超链增值服务"
+        }
+    },
+    {
+        "category": "淘宝-消费券",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "消费券代付资金"
+        }
+    },
+    {
         "category": "淘宝-交易收款",
         "conditions": [
             {

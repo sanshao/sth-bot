@@ -36,15 +36,6 @@ def process_tmall_file(file_path, target_directory):
     # 添加税率列
     df['税率'] = df.apply(assign_tax_rate, axis=1)
 
-    # 细化分类名称，附加税率
-    def append_tax_to_category(row):
-        cat = str(row['分类'])
-        tax = str(row['税率'])
-        if cat in ('天猫-交易收款', '淘宝-交易收款') and tax != '':
-            return f"{cat}'{tax}"
-        return cat
-    df['分类'] = df.apply(append_tax_to_category, axis=1)
-
     # 调整列顺序，将“净值”列放在“支出金额（-元）”后、账户余额之前
     columns_order = list(df.columns)
     # 找到“支出金额（-元）”和“账户余额（元）”的位置
@@ -55,12 +46,23 @@ def process_tmall_file(file_path, target_directory):
     columns_order.insert(balance_index, columns_order.pop(outflow_index + 1))  # 移动“净值”到“支出金额（-元）”和“账户余额（元）”之间
     df = df[columns_order]
 
-    # # 创建新的工作表“整理”
-    # with pd.ExcelWriter(file_path, engine='openpyxl', mode='a') as writer:
-    #     df.to_excel(writer, sheet_name='整理', index=False)
+    # 为透视表生成带税率的分类
+    def get_pivot_category(row):
+        cat = str(row['分类'])
+        tax = str(row['税率'])
+        target_categories = ['交易收款', '限时红包', '消费券']
+        if any(target in cat for target in target_categories) and tax != '':
+            return f"{cat}{tax}"
+        return cat
+
+    df['_透视分类'] = df.apply(get_pivot_category, axis=1)
 
     # 创建透视表来计算分类下的净值和总和
-    pivot_table = df.pivot_table(values='净值', index='分类', aggfunc='sum').reset_index()
+    pivot_table = df.pivot_table(values='净值', index='_透视分类', aggfunc='sum').reset_index()
+    pivot_table = pivot_table.rename(columns={'_透视分类': '分类'})
+    
+    # 移除临时列
+    df = df.drop(columns=['_透视分类'])
 
     # 添加总和行
     total_row = pd.DataFrame({'分类': ['总和'], '净值': [pivot_table['净值'].sum()]})

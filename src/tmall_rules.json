@@ -36,6 +36,61 @@
         }
     },
     {
+        "category": "天猫-交易收款平台补贴",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "百补合作费用超级版"
+        }
+    },
+    {
+        "category": "天猫-百亿服务费百补特定软件",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "百补特定软件服务"
+        }
+    },
+    {
+        "category": "天猫-百亿服务费百补超链增值",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "百补超链增值服务"
+        }
+    },
+    {
+        "category": "天猫-百补超链交易软件服务",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "百补超链交易软件服务"
+        }
+    },
+    {
+        "category": "天猫-百补信息展示软件服务",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "百补信息展示软件服务"
+        }
+    },
+    {
+        "category": "天猫-消费券",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "消费券代付资金"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "超过消费券封顶金额的平台出资合作费用"
+            }
+        ]
+    },
+    {
         "category": "天猫-交易收款",
         "conditions": [
             {
@@ -47,6 +102,11 @@
                 "field": "备注",
                 "op": "contains",
                 "value": "基金代发任务"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "百补超级版消费者实付款"
             }
         ]
     },
@@ -416,19 +476,38 @@
         }
     },
     {
+        "category": "天猫-售后赔付",
+        "condition": {
+            "all": [
+                {
+                    "field": "备注",
+                    "op": "contains",
+                    "value": "支付宝转账小额打款"
+                },
+                {
+                    "field": "支出金额（-元）",
+                    "op": "<",
+                    "value": -2
+                }
+            ]
+        }
+    },
+    {
         "category": "天猫-好评返现",
-        "conditions": [
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "支付宝转账小额打款-关联订单号"
-            },
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "支付宝转账小额打款-未关联"
-            }
-        ]
+        "condition": {
+            "all": [
+                {
+                    "field": "备注",
+                    "op": "contains",
+                    "value": "支付宝转账小额打款"
+                },
+                {
+                    "field": "支出金额（-元）",
+                    "op": ">=",
+                    "value": -2
+                }
+            ]
+        }
     },
     {
         "category": "天猫-基础软件服务费",

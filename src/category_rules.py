@@ -159,12 +159,16 @@ def to_number(value: Any) -> float | None:
 
 def assign_tax_rate(row: pd.Series) -> str:
     category = str(row.get('分类', ''))
-    if category in ('天猫-交易收款', '淘宝-交易收款'):
+    
+    target_categories = ['交易收款', '限时红包', '多买多省']
+    if any(target in category for target in target_categories):
         name = str(row.get('商品名称', ''))
-        if '鲜奶' in name or '鲜牛乳' in name:
+        keywords_9 = ['鲜奶', '鲜牛乳', '鲜牛奶', '乳糖牛奶']
+        keywords_13 = ['酸奶', '发酵乳', '发酵奶', '巧克力奶', '藜麦牛奶燕麦', '试乳牛乳饮品', '牛乳饮品', '牛乳茶乳饮料', '原味蜂蜜0蔗糖']
+
+        if any(k in name for k in keywords_9):
             return '9%'
         
-        keywords_13 = ['酸奶', '发酵乳', '发酵奶', '巧克力奶', '藜麦牛奶燕麦', '试乳牛乳饮品', '牛乳饮品', '牛乳茶乳饮料', '原味蜂蜜0蔗糖']
         if any(k in name for k in keywords_13):
             return '13%'
     return ''
