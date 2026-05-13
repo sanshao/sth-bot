@@ -57,15 +57,15 @@ def process_taobao_file(file_path, target_directory):
 
     df['_透视分类'] = df.apply(get_pivot_category, axis=1)
 
-    # 创建透视表来计算分类下的净值和总和
-    pivot_table = df.pivot_table(values='净值', index='_透视分类', aggfunc='sum').reset_index()
-    pivot_table = pivot_table.rename(columns={'_透视分类': '分类'})
+    # 创建透视表来计算分类下的净值、行数和总和
+    pivot_table = df.pivot_table(values='净值', index='_透视分类', aggfunc=['sum', 'count']).reset_index()
+    pivot_table.columns = ['分类', '净值', '行数']
     
     # 移除临时列
     df = df.drop(columns=['_透视分类'])
 
     # 添加总和行
-    total_row = pd.DataFrame({'分类': ['总和'], '净值': [pivot_table['净值'].sum()]})
+    total_row = pd.DataFrame({'分类': ['总和'], '净值': [pivot_table['净值'].sum()], '行数': [pivot_table['行数'].sum()]})
     pivot_table = pd.concat([pivot_table, total_row], ignore_index=True)
     
     base_name = os.path.basename(file_path)

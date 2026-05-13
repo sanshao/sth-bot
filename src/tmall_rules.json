@@ -76,6 +76,26 @@
         }
     },
     {
+        "category": "天猫-百补超链佣金返还",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "百补专属超链佣金返还"
+            }
+        ]
+    },
+    {
+        "category": "天猫-百补定向营销费",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "百亿补贴定向营销费用"
+            }
+        ]
+    },
+    {
         "category": "天猫-消费券",
         "conditions": [
             {
