@@ -36,6 +36,15 @@ def process_taobao_file(file_path, target_directory):
     # 添加税率列
     df['税率'] = df.apply(assign_tax_rate, axis=1)
 
+    # 细化分类名称，附加税率
+    def append_tax_to_category(row):
+        cat = str(row['分类'])
+        tax = str(row['税率'])
+        if cat in ('天猫-交易收款', '淘宝-交易收款') and tax != '':
+            return f"{cat}'{tax}"
+        return cat
+    df['分类'] = df.apply(append_tax_to_category, axis=1)
+
     # 调整列顺序，将“净值”列放在“支出金额（-元）”后、账户余额之前
     columns_order = list(df.columns)
     # 找到“支出金额（-元）”和“账户余额（元）”的位置
@@ -57,15 +66,6 @@ def process_taobao_file(file_path, target_directory):
     total_row = pd.DataFrame({'分类': ['总和'], '净值': [pivot_table['净值'].sum()]})
     pivot_table = pd.concat([pivot_table, total_row], ignore_index=True)
     
-    # 创建交易收款透视表
-    df_receipt = df[df['分类'].isin(['天猫-交易收款', '淘宝-交易收款']) & (df['税率'] != '') & df['税率'].notna()]
-    if not df_receipt.empty:
-        receipt_pivot = df_receipt.pivot_table(values='净值', index='税率', aggfunc='sum').reset_index()
-        receipt_total = pd.DataFrame({'税率': ['总和'], '净值': [receipt_pivot['净值'].sum()]})
-        receipt_pivot = pd.concat([receipt_pivot, receipt_total], ignore_index=True)
-    else:
-        receipt_pivot = pd.DataFrame(columns=['税率', '净值'])
-    
     base_name = os.path.basename(file_path)
     new_file_name = f"{os.path.splitext(base_name)[0]}_整理.xlsx"
     
@@ -73,10 +73,9 @@ def process_taobao_file(file_path, target_directory):
     
     # print("新文件名：", new_file_path, base_name)
 
-    # 创建新的工作表 “整理” “透视” “交易收款”
+    # 创建新的工作表 “整理” “透视”
     with pd.ExcelWriter(new_file_path, engine='openpyxl') as writer:
         df.to_excel(writer, sheet_name='整理', index=False)
         pivot_table.to_excel(writer, sheet_name='透视', index=False)
-        receipt_pivot.to_excel(writer, sheet_name='交易收款', index=False)
 
     print(f"处理完成！新文件生成: {new_file_path}")
