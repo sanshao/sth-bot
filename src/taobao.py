@@ -1,7 +1,8 @@
 import pandas as pd
 import os
+import json
 from datetime import datetime
-from category_rules import assign_category_by_rules, build_keyword_rules
+from category_rules import assign_category_by_rules, assign_tax_rate
 
 
 def process_taobao_file(file_path, target_directory):
@@ -25,186 +26,15 @@ def process_taobao_file(file_path, target_directory):
     # 计算净值并添加到新列
     df['净值'] = df['收入金额（+元）'] + df['支出金额（-元）']
 
-    # 定义分类字典
-    category_mapping = {
-        "结息":["基金代发任务"],
-        "淘宝-百亿服务费":["百亿补贴软件服务费"],
-        "淘宝-多买多省":["多买多省"],
-        "淘宝-限时红包":["限时红包"],
-        "淘宝-淘金币":["淘金币"],
-        "淘宝-保险费":["消费者体验提升计划服务费", "保险承保"],
-        # "淘宝-保证金充值":["淘宝消费者保证金-充值（代扣）", "淘宝消费者保证金-充值（代扣）"],
-        "淘宝-保证金解冻":["淘宝消费者保证金-解冻"],
-        "淘宝-大促软件服务费":["淘宝大促软件技术服务费"],
-        "淘宝-官方竞价软件费":["官方竞价软件服务费"],
-        "淘宝-基础软件服务费":["基础软件服务费", "淘宝天猫跨境服务基础费"],
-        "淘宝-公益":["公益宝贝捐赠"],
-        # "淘宝-交易收款":[""],
-        "淘宝-交易退款":["淘宝消费者保证金-交易售后", "售后退款-"],
-        "淘宝-保证金退款":["保证金退款"],
-        "淘宝-保证金退邮费":["淘宝消费者保证金-充值（代扣）-退货邮费"],
-        "淘宝-跨境服务费":["淘宝天猫跨境服务增值费"],
-        "淘宝-赔付":[
-            "支付宝转账小额打款-关联订单号",
-            "淘宝消费者保证金-充值（代扣）-缺货", 
-            "淘宝消费者保证金-充值（代扣）-红包冻结", 
-            "淘宝消费者保证金-充值（代扣）-延迟发货", "商家权益红包-预算追加-卖家延迟发货赔付红包-赔付红包",
-            "商家权益红包-预算追加-淘宝缺货赔付红包-赔付红包"
-        ],
-        "淘宝-虚假发货赔付":["预算追加-淘宝虚假发货赔付"],
-        "淘宝-品牌护肤赤兔":["代扣-赤兔名"],
-        "淘宝-首单拉新":["淘宝新客礼金技术服务费", "品牌新享淘宝老客礼金软件服务费", "品牌新享淘宝限时礼金软件服务费"],
-        "淘宝-淘宝客佣金":["淘宝客佣金代扣款", "淘宝联盟推广佣金返还", "淘宝联盟佣金代扣"],
-        "淘宝-万相台充值":["万相台无界版自动充值"],
-        "淘宝-转运物流费":["商家集运"],
-        "淘宝-每日必买服务费":["每日必买"],
-        "淘宝-物流轨迹异常":["淘宝物流轨迹异常"],
-        "淘工厂-托管充值":["账户充值-工作台充值","账户充值-手动充值","账户充值-自动充值"],
-        "淘工厂-促销费":["直营&联营&营促销"],
-        # "淘工厂-好评返现":["评价有礼"],
-        "淘工厂-交易收款":["C2M订单交易货款分账", "C2M-退款赔付-申诉单号", "订单交易货款分账", "C2M-合作费用-订单号"],
-        "淘工厂-交易退款":["分账退回", "淘特直营保证金履约险_追偿款"], 
-        "淘工厂-赔付":["天猫售后赔付", "因物流轨迹异常-物流停滞原因 扣罚", "因延迟发货原因 扣罚", "扣款用途：C2M-处罚赔付"],
-        "淘工厂-商家出资补贴":["正向扣款-商家出资补贴", "逆向退款-商家出资补贴"],
-        "淘工厂-赠品营销费": ["正向扣款-买赠赠品营销费用", "逆向退款-买赠赠品营销费用"],
-        "淘工厂-淘宝佣金":["正向扣佣-精选淘客-", "红包签到供应商cps佣金"],
-        "淘工厂-托管费":["商品运营托管推广服务费"],
-        "淘工厂-托管账户充值":["扣款用途：账户充值-工作台充值", "扣款用途：账户充值-自动充值"],
-        "淘工厂-先用后付":["C2M-先用后付技术服务费"],
-        "淘宝-先用后付服务费":["淘宝-先用后付服务费", "先用后付技术服务费"],
-        "淘工厂-运费险":["退货包运费代扣"],
-        # "提现":[""],
-        "网商贷-放款":["网商贷-放款"],
-        "网商贷-还款":["网商贷-还款", "网商银行扣款"],
-        "支付宝-花呗还款": ["花呗|信用购"],
-        "淘工厂-技术服务费": ["扣款用途：C2M-技术服务费"],
-        "淘工厂-转运物流费": ["新疆物流集运"],
-        # "淘工厂-违约赔付": ["淘宝物流轨迹异常"],
-    }
-
-    explicit_rules = [
-        {
-            "category": "淘宝-保证金充值",
-            "condition": {
-                "any": [
-                    {"field": "备注", "op": "eq", "value": "淘宝消费者保证金-充值（代扣）"},
-                    {"field": "备注", "op": "eq", "value": "淘宝消费者保证金-充值"},
-                ]
-            },
-        },
-        {"category": "淘工厂-直通车充值", "condition": {"field": "商品名称", "op": "contains", "value": "万相台无界版扫码充值"}},
-        {"category": "门道商家助手-基础版-订单付款", "condition": {"field": "商品名称", "op": "contains", "value": "门道商家助手-基础版-订单付款"}},
-        {"category": "千橙食品赤兔", "condition": {"field": "商品名称", "op": "contains", "value": "赤兔名品客服绩效"}},
-        {
-            "category": "淘宝-交易收款",
-            "condition": {
-                "any": [
-                    {"field": "业务类型", "op": "eq", "value": "交易付款"},
-                    {"field": "备注", "op": "contains", "value": "基金代发任务"},
-                ]
-            },
-        },
-        {"category": "提现", "condition": {"field": "业务类型", "op": "eq", "value": "提现"}},
-        {"category": "结息", "condition": {"field": "业务类型", "op": "eq", "value": "结息"}},
-        {"category": "在线支付", "condition": {"field": "业务类型", "op": "eq", "value": "在线支付"}},
-        {
-            "category": "海那边-转账",
-            "condition": {
-                "all": [
-                    {"field": "对方账号", "op": "eq", "value": "*骁(dux***@gmail.com)"},
-                    {"field": "备注", "op": "eq", "value": "转账"},
-                ]
-            },
-        },
-        {
-            "category": "报销-丁庆飞",
-            "condition": {
-                "all": [
-                    {"field": "对方账号", "op": "eq", "value": "**飞(165***@qq.com)"},
-                    {"field": "备注", "op": "eq", "value": "转账"},
-                ]
-            },
-        },
-        {
-            "category": "小木登子-转入",
-            "condition": {
-                "all": [
-                    {"field": "对方账号", "op": "eq", "value": "*璁(cao***@aliyun.com)"},
-                    {"field": "备注", "op": "eq", "value": "转账"},
-                ]
-            },
-        },
-        {
-            "category": "赵振",
-            "condition": {
-                "all": [
-                    {"field": "对方账号", "op": "eq", "value": "**振(156******90)"},
-                    {"field": "备注", "op": "eq", "value": "转账"},
-                ]
-            },
-        },
-        {
-            "category": "一大包零食交保证金",
-            "condition": {
-                "all": [
-                    {"field": "对方账号", "op": "eq", "value": "杭州昌诚电子商务有限公司(ydbbzj@service.aliyun.com)"},
-                    {"field": "备注", "op": "eq", "value": "转账"},
-                ]
-            },
-        },
-        {
-            "category": "88VIP货款",
-            "condition": {
-                "all": [
-                    {"field": "对方账号", "op": "eq", "value": "杭州淘宝直播严选电子商务有限公司(qdzfb@service.aliyun.com)"},
-                    {"field": "备注", "op": "eq", "value": "转账"},
-                ]
-            },
-        },
-        {
-            "category": "大C店-转出",
-            "condition": {
-                "all": [
-                    {"field": "对方账号", "op": "eq", "value": "**婧(150******97)"},
-                    {"field": "备注", "op": "eq", "value": "转账"},
-                    {"field": "支出金额（-元）", "op": "<", "value": 0},
-                ]
-            },
-        },
-        {
-            "category": "大C店-转入",
-            "condition": {
-                "all": [
-                    {"field": "对方账号", "op": "eq", "value": "**婧(150******97)"},
-                    {"field": "备注", "op": "eq", "value": "转账"},
-                    {"field": "收入金额（+元）", "op": ">", "value": 0},
-                ]
-            },
-        },
-        {
-            "category": "支付宝-花呗还款",
-            "condition": {
-                "all": [
-                    {"field": "备注", "op": "contains", "value": "花呗"},
-                    {"field": "备注", "op": "contains", "value": "还款"},
-                ]
-            },
-        },
-        {
-            "category": "淘工厂-违约赔付",
-            "condition": {
-                "all": [
-                    {"field": "备注", "op": "contains", "value": "淘特直营商家管理保证金"},
-                    {"field": "备注", "op": "contains", "value": "违约金扣罚"},
-                ]
-            },
-        },
-    ]
-
-    rules = explicit_rules + build_keyword_rules(category_mapping, field="备注")
+    json_path = os.path.join(os.path.dirname(__file__), 'taobao_rules.json')
+    with open(json_path, 'r', encoding='utf-8') as f:
+        rules = json.load(f)
 
     # 添加分类列
     df['分类'] = df.apply(lambda row: assign_category_by_rules(row, rules), axis=1)
+
+    # 添加税率列
+    df['税率'] = df.apply(assign_tax_rate, axis=1)
 
     # 调整列顺序，将“净值”列放在“支出金额（-元）”后、账户余额之前
     columns_order = list(df.columns)
@@ -227,6 +57,15 @@ def process_taobao_file(file_path, target_directory):
     total_row = pd.DataFrame({'分类': ['总和'], '净值': [pivot_table['净值'].sum()]})
     pivot_table = pd.concat([pivot_table, total_row], ignore_index=True)
     
+    # 创建交易收款透视表
+    df_receipt = df[df['分类'].isin(['天猫-交易收款', '淘宝-交易收款']) & (df['税率'] != '') & df['税率'].notna()]
+    if not df_receipt.empty:
+        receipt_pivot = df_receipt.pivot_table(values='净值', index='税率', aggfunc='sum').reset_index()
+        receipt_total = pd.DataFrame({'税率': ['总和'], '净值': [receipt_pivot['净值'].sum()]})
+        receipt_pivot = pd.concat([receipt_pivot, receipt_total], ignore_index=True)
+    else:
+        receipt_pivot = pd.DataFrame(columns=['税率', '净值'])
+    
     base_name = os.path.basename(file_path)
     new_file_name = f"{os.path.splitext(base_name)[0]}_整理.xlsx"
     
@@ -234,9 +73,10 @@ def process_taobao_file(file_path, target_directory):
     
     # print("新文件名：", new_file_path, base_name)
 
-    # 创建新的工作表 “整理” “透视”
+    # 创建新的工作表 “整理” “透视” “交易收款”
     with pd.ExcelWriter(new_file_path, engine='openpyxl') as writer:
         df.to_excel(writer, sheet_name='整理', index=False)
         pivot_table.to_excel(writer, sheet_name='透视', index=False)
+        receipt_pivot.to_excel(writer, sheet_name='交易收款', index=False)
 
     print(f"处理完成！新文件生成: {new_file_path}")

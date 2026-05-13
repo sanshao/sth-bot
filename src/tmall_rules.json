@@ -1,0 +1,891 @@
+[
+    {
+        "category": "天猫-保证金充值",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "eq",
+                "value": "天猫保证金-充值（代扣）"
+            },
+            {
+                "field": "备注",
+                "op": "eq",
+                "value": "天猫消费者保证金-充值"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "天猫保证金-充值"
+            }
+        ]
+    },
+    {
+        "category": "淘工厂-直通车充值",
+        "condition": {
+            "field": "商品名称",
+            "op": "contains",
+            "value": "万相台无界版扫码充值"
+        }
+    },
+    {
+        "category": "门道商家助手-基础版-订单付款",
+        "condition": {
+            "field": "商品名称",
+            "op": "contains",
+            "value": "门道商家助手-基础版-订单付款"
+        }
+    },
+    {
+        "category": "天猫-交易收款",
+        "conditions": [
+            {
+                "field": "业务类型",
+                "op": "eq",
+                "value": "交易付款"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "基金代发任务"
+            }
+        ]
+    },
+    {
+        "category": "提现",
+        "condition": {
+            "field": "业务类型",
+            "op": "eq",
+            "value": "提现"
+        }
+    },
+    {
+        "category": "结息",
+        "condition": {
+            "field": "业务类型",
+            "op": "eq",
+            "value": "结息"
+        }
+    },
+    {
+        "category": "在线支付",
+        "condition": {
+            "field": "业务类型",
+            "op": "eq",
+            "value": "在线支付"
+        }
+    },
+    {
+        "category": "海那边-转账",
+        "condition": {
+            "all": [
+                {
+                    "field": "对方账号",
+                    "op": "eq",
+                    "value": "*骁(dux***@gmail.com)"
+                },
+                {
+                    "field": "备注",
+                    "op": "eq",
+                    "value": "转账"
+                }
+            ]
+        }
+    },
+    {
+        "category": "报销-丁庆飞",
+        "condition": {
+            "all": [
+                {
+                    "field": "对方账号",
+                    "op": "eq",
+                    "value": "**飞(165***@qq.com)"
+                },
+                {
+                    "field": "备注",
+                    "op": "eq",
+                    "value": "转账"
+                }
+            ]
+        }
+    },
+    {
+        "category": "小木登子-转入",
+        "condition": {
+            "all": [
+                {
+                    "field": "对方账号",
+                    "op": "eq",
+                    "value": "*璁(cao***@aliyun.com)"
+                },
+                {
+                    "field": "备注",
+                    "op": "eq",
+                    "value": "转账"
+                }
+            ]
+        }
+    },
+    {
+        "category": "一大包零食交保证金",
+        "condition": {
+            "all": [
+                {
+                    "field": "对方账号",
+                    "op": "eq",
+                    "value": "杭州昌诚电子商务有限公司(ydbbzj@service.aliyun.com)"
+                },
+                {
+                    "field": "业务类型",
+                    "op": "eq",
+                    "value": "转账"
+                }
+            ]
+        }
+    },
+    {
+        "category": "88VIP货款",
+        "condition": {
+            "all": [
+                {
+                    "field": "对方账号",
+                    "op": "eq",
+                    "value": "杭州淘宝直播严选电子商务有限公司(qdzfb@service.aliyun.com)"
+                },
+                {
+                    "field": "业务类型",
+                    "op": "eq",
+                    "value": "转账"
+                }
+            ]
+        }
+    },
+    {
+        "category": "大C店-转出",
+        "condition": {
+            "all": [
+                {
+                    "field": "对方账号",
+                    "op": "eq",
+                    "value": "**婧(150******97)"
+                },
+                {
+                    "field": "备注",
+                    "op": "eq",
+                    "value": "转账"
+                },
+                {
+                    "field": "支出金额（-元）",
+                    "op": "<",
+                    "value": 0
+                }
+            ]
+        }
+    },
+    {
+        "category": "大C店-转入",
+        "condition": {
+            "all": [
+                {
+                    "field": "对方账号",
+                    "op": "eq",
+                    "value": "**婧(150******97)"
+                },
+                {
+                    "field": "备注",
+                    "op": "eq",
+                    "value": "转账"
+                },
+                {
+                    "field": "收入金额（+元）",
+                    "op": ">",
+                    "value": 0
+                }
+            ]
+        }
+    },
+    {
+        "category": "淘宝买菜-先用后付服务费",
+        "condition": {
+            "all": [
+                {
+                    "field": "对方账号",
+                    "op": "eq",
+                    "value": "上海菜菜超市有限公司(tccsyt@service.aliyun.com)"
+                },
+                {
+                    "field": "备注",
+                    "op": "contains",
+                    "value": "先用后付技术服务费"
+                }
+            ]
+        }
+    },
+    {
+        "category": "淘宝买菜-促消费",
+        "condition": {
+            "all": [
+                {
+                    "field": "对方账号",
+                    "op": "eq",
+                    "value": "上海菜菜超市有限公司(tccsyt@service.aliyun.com)"
+                },
+                {
+                    "field": "备注",
+                    "op": "contains",
+                    "value": "直营&联营&营促销"
+                }
+            ]
+        }
+    },
+    {
+        "category": "天猫超市-交易收款",
+        "conditions": [
+            {
+                "all": [
+                    {
+                        "field": "备注",
+                        "op": "contains",
+                        "value": "DDD商家结算款"
+                    },
+                    {
+                        "not": {
+                            "field": "备注",
+                            "op": "contains",
+                            "value": "扣款用途"
+                        }
+                    }
+                ]
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "DDD商家结算款"
+            }
+        ]
+    },
+    {
+        "category": "天猫-百亿服务费",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "百亿补贴软件服务费"
+        }
+    },
+    {
+        "category": "天猫-多买多省",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "多买多省"
+        }
+    },
+    {
+        "category": "天猫-限时红包",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "限时红包"
+        }
+    },
+    {
+        "category": "天猫-淘金币",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "淘金币"
+        }
+    },
+    {
+        "category": "天猫-保险费",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "消费者体验提升计划服务费"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "保险承保"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "保险理赔"
+            }
+        ]
+    },
+    {
+        "category": "天猫-保证金解冻",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "天猫保证金-解冻"
+        }
+    },
+    {
+        "category": "天猫-保证金赔付",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "天猫保证金-充值（代扣）-缺货"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "天猫保证金-充值（代扣）-红包冻结"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "天猫保证金-充值（代扣）-未按时开具发票"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "天猫保证金-充值（代扣）-物流轨迹超时"
+            }
+        ]
+    },
+    {
+        "category": "天猫-延迟发货赔付",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "天猫保证金-充值（代扣）-延迟发货"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "天猫保证金-充值（代扣）-物流轨迹异常"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "天猫保证金履约险追偿_"
+            }
+        ]
+    },
+    {
+        "category": "天猫-退货包运费",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "天猫保证金-充值（代扣）-退货邮费"
+        }
+    },
+    {
+        "category": "天猫-虚假发货赔付",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "虚假发货赔付"
+        }
+    },
+    {
+        "category": "天猫-返点积分",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "代扣返点积分"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "代扣交易退回积分"
+            }
+        ]
+    },
+    {
+        "category": "天猫-公益",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "公益宝贝捐赠"
+        }
+    },
+    {
+        "category": "天猫-官方竞价软件费",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "官方竞价软件服务费"
+        }
+    },
+    {
+        "category": "天猫-好评返现",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "支付宝转账小额打款-关联订单号"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "支付宝转账小额打款-未关联"
+            }
+        ]
+    },
+    {
+        "category": "天猫-基础软件服务费",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "基础软件服务费"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "淘宝天猫跨境服务基础费"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "C2M-技术服务费"
+            }
+        ]
+    },
+    {
+        "category": "天猫-跨境服务费",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "淘宝天猫跨境服务增值费"
+        }
+    },
+    {
+        "category": "天猫-交易退款",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "消费者保证金-交易售后"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "售后退款-"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "售后支付"
+            }
+        ]
+    },
+    {
+        "category": "天猫-保证金退款",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "保证金退款"
+        }
+    },
+    {
+        "category": "天猫-首单拉新",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "天猫新客礼金技术服务费"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "品牌新享天猫老客礼金软件服务费"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "品牌新享天猫限时礼金软件服务费"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "品牌新享-首单拉新计划"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "品牌新享新品孵化软件服务费"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "品牌新享会员礼金"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "首单技术礼金"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "品牌新享天猫超级老客加速软件服务费"
+            }
+        ]
+    },
+    {
+        "category": "天猫-淘宝客佣金",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "淘宝客佣金代扣款"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "淘宝联盟推广佣金返还"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "淘宝联盟佣金代扣"
+            }
+        ]
+    },
+    {
+        "category": "天猫-天猫佣金",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "扣款用途：天猫佣金"
+        }
+    },
+    {
+        "category": "天猫-万相台充值",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "万相台无界版自动充值"
+        }
+    },
+    {
+        "category": "天猫-转运物流费",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "商家集运中转操作费"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "商家集运物流服务费"
+            }
+        ]
+    },
+    {
+        "category": "天猫超市-扣款",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "扣款用途：DDD商家扣款"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "扣款用途：DDD商家结算款 "
+            }
+        ]
+    },
+    {
+        "category": "天猫超市-淘客佣金",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "扣款用途：DDD淘客佣金"
+        }
+    },
+    {
+        "category": "淘工厂-淘宝佣金",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "正向扣佣-精选淘客-"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "红包签到供应商cps佣金"
+            }
+        ]
+    },
+    {
+        "category": "淘工厂-促销费",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "直营&联营&营促销"
+        }
+    },
+    {
+        "category": "淘工厂-好评返现",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "评价有礼"
+        }
+    },
+    {
+        "category": "淘工厂-交易收款",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "C2M订单交易货款分账"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "C2M-退款赔付-申诉单号"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "订单交易货款分账"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "C2M-合作费用-订单号"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "扣款用途：C2M-处罚赔付"
+            }
+        ]
+    },
+    {
+        "category": "淘工厂-交易退款",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "分账退回"
+        }
+    },
+    {
+        "category": "淘工厂-赔付",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "天猫售后赔付"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "因物流轨迹异常-物流停滞原因 扣罚"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "因延迟发货原因 扣罚"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "淘特直营保证金履约险_追偿款"
+            }
+        ]
+    },
+    {
+        "category": "淘工厂-保证金履约险",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "淘特直营保证金履约险_保险费"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "淘特直营保证金履约险_退保保险费"
+            }
+        ]
+    },
+    {
+        "category": "淘工厂-商家出资补贴",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "正向扣款-商家出资补贴"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "正向扣款-买赠赠品营销费用"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "逆向退款-买赠赠品营销费用"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "逆向退款-商家出资补贴"
+            }
+        ]
+    },
+    {
+        "category": "淘工厂-托管费",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "商品运营托管推广服务费"
+        }
+    },
+    {
+        "category": "淘工厂-托管账户充值",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "扣款用途：账户充值-工作台充值"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "扣款用途：账户充值-自动充值"
+            }
+        ]
+    },
+    {
+        "category": "淘工厂-先用后付",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "C2M-先用后付技术服务费"
+        }
+    },
+    {
+        "category": "天猫-先用后付服务费",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "天猫-先用后付服务费"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "先用后付技术服务费"
+            }
+        ]
+    },
+    {
+        "category": "淘工厂-运费险",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "退货包运费代扣"
+        }
+    },
+    {
+        "category": "网商贷-放款",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "网商贷-放款"
+        }
+    },
+    {
+        "category": "网商贷-还款",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "网商贷-还款"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "网商银行扣款"
+            }
+        ]
+    },
+    {
+        "category": "天猫-一大包零食推广费",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "天猫一大包零食广告套餐费用"
+        }
+    },
+    {
+        "category": "天猫-千橙食品店ERP接口费",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "代扣款（扣款用途：按订单收费服务费"
+        }
+    },
+    {
+        "category": "淘宝买菜-保证金履约险",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "淘宝买菜保证金履约险_保费"
+        }
+    },
+    {
+        "category": "淘宝买菜-新品套餐货款抵扣",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "扣款用途：新品套餐货款抵扣"
+        }
+    },
+    {
+        "category": "淘宝买菜-退货包运费",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "代扣款（扣款用途：退货包运费服务费"
+        }
+    },
+    {
+        "category": "淘宝买菜-商家处罚",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "代扣款（扣款用途：商家处罚"
+        }
+    },
+    {
+        "category": "淘宝买菜-佣金",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "代扣款（扣款用途：佣金"
+        }
+    },
+    {
+        "category": "淘宝买菜-交易收款",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "货款{"
+        }
+    },
+    {
+        "category": "淘宝买菜-托管费",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "营销合作费{"
+        }
+    }
+]
