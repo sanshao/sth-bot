@@ -164,11 +164,12 @@ def assign_tax_rate(row: pd.Series) -> str:
     if any(target in category for target in target_categories):
         name = str(row.get('商品名称', ''))
         keywords_9 = ['鲜奶', '鲜牛乳', '鲜牛奶', '乳糖牛奶']
-        keywords_13 = ['酸奶', '发酵乳', '发酵奶', '巧克力奶', '藜麦牛奶燕麦', '试乳牛乳饮品', '牛乳饮品', '牛乳茶乳饮料', '原味蜂蜜0蔗糖']
+        keywords_13 = ['米布丁', '酸奶', '发酵乳', '发酵奶', '巧克力奶', '藜麦牛奶燕麦', '试乳牛乳饮品', '牛乳饮品', '牛乳茶乳饮料', '原味蜂蜜0蔗糖', '牛奶布丁']
+
+        if any(k in name for k in keywords_13):
+            return '13%'
 
         if any(k in name for k in keywords_9):
             return '9%'
         
-        if any(k in name for k in keywords_13):
-            return '13%'
     return ''

@@ -68,6 +68,14 @@
         }
     },
     {
+        "category": "天猫-百补信息展示软件服务返还",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "百补信息展示软件服务-返还"
+        }
+    },
+    {
         "category": "天猫-百补信息展示软件服务",
         "condition": {
             "field": "备注",
