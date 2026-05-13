@@ -94,6 +94,16 @@
         ]
     },
     {
+        "category": "天猫-百补超级版交易退款",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "百补超级版交易退款"
+            }
+        ]
+    },
+    {
         "category": "天猫-百补定向营销费",
         "conditions": [
             {
@@ -140,11 +150,18 @@
     },
     {
         "category": "提现",
-        "condition": {
-            "field": "业务类型",
-            "op": "eq",
-            "value": "提现"
-        }
+        "conditions": [
+            {
+                "field": "业务类型",
+                "op": "eq",
+                "value": "提现"
+            },
+            {
+                "field": "业务类型",
+                "op": "eq",
+                "value": "退票"
+            }
+        ]
     },
     {
         "category": "结息",
@@ -635,6 +652,11 @@
                 "field": "备注",
                 "op": "contains",
                 "value": "品牌新享天猫超级老客加速软件服务费"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "品牌新享天猫超级新客加速"
             }
         ]
     },

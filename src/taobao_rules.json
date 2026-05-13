@@ -1,5 +1,128 @@
 [
     {
+        "category": "淘菜菜-退款赔付",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "MMC-退款赔付"
+            }
+        ]
+    },
+    {
+        "category": "淘菜菜-退佣",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "MMC-逆向退佣"
+            }
+        ]
+    },
+    {
+        "category": "淘菜菜-交易补贴",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "MMC-交易补贴"
+            }
+        ]
+    },
+    {
+        "category": "淘菜菜-评价有礼服务费",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "MMC-评价有礼服务费"
+            }
+        ]
+    },
+    {
+        "category": "淘菜菜-售后客服服务费",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "MMC-技术服务费-售后客服服务费"
+            }
+        ]
+    },
+    {
+        "category": "淘菜菜-退款客服服务费",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "MMC-技术服务费-退款客服服务费"
+            }
+        ]
+    },
+    {
+        "category": "淘菜菜-直播推广服务费",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "MMC-正向扣款-直播推广服务费"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "MMC-逆向退款-直播推广服务费"
+            }
+        ]
+    },
+    {
+        "category": "淘菜菜-售前客服服务费",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "MMC-技术服务费-售前客服服务费"
+            }
+        ]
+    },
+    {
+        "category": "淘菜菜-会员购佣金",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "MMC-正向扣佣-会员购佣金"
+            }
+        ]
+    },
+    {
+        "category": "淘菜菜-投流推广",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "MMC-正向扣佣-投流推广"
+            }
+        ]
+    },
+    {
+        "category": "淘菜菜-百亿补贴佣金",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "MMC-正向扣佣-百亿补贴佣金"
+            }
+        ]
+    },
+    {
+        "category": "淘宝-学生价技术服务费",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "学生价技术服务费"
+        }
+    },
+    {
         "category": "淘宝-保证金充值",
         "conditions": [
             {
@@ -92,11 +215,18 @@
     },
     {
         "category": "提现",
-        "condition": {
-            "field": "业务类型",
-            "op": "eq",
-            "value": "提现"
-        }
+        "conditions": [
+            {
+                "field": "业务类型",
+                "op": "eq",
+                "value": "提现"
+            },
+            {
+                "field": "业务类型",
+                "op": "eq",
+                "value": "退票"
+            }
+        ]
     },
     {
         "category": "结息",
@@ -541,6 +671,14 @@
         }
     },
     {
+        "category": "淘宝-万相台退款",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "万相台无界版退款"
+        }
+    },
+    {
         "category": "淘宝-转运物流费",
         "condition": {
             "field": "备注",
@@ -558,11 +696,28 @@
     },
     {
         "category": "淘宝-物流轨迹异常",
-        "condition": {
-            "field": "备注",
-            "op": "contains",
-            "value": "淘宝物流轨迹异常"
-        }
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "淘宝物流轨迹异常"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "商家权益红包-预算追加-淘宝物流轨迹超时红包-赔付红包"
+            }
+        ]
+    },
+    {
+        "category": "淘宝-代购费",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "代购费"
+            }
+        ]
     },
     {
         "category": "淘工厂-托管充值",
