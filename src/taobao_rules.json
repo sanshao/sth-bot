@@ -143,6 +143,26 @@
         ]
     },
     {
+        "category": "淘工厂-交易补贴",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "MMC-交易补贴"
+            }
+        ]
+    },
+    {
+        "category": "淘工厂-直播推广服务费",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "C2M-逆向退款-直播推广服务费"
+            }
+        ]
+    },
+    {
         "category": "淘工厂-直通车充值",
         "condition": {
             "field": "商品名称",
