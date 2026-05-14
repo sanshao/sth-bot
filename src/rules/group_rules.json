@@ -1,0 +1,120 @@
+[
+  {
+    "category": "学生价技术服务费",
+    "condition": {
+      "field": "备注",
+      "op": "contains",
+      "value": "学生价技术服务费"
+    }
+  },
+  {
+    "category": "基础软件服务费",
+    "conditions": [
+      {
+        "field": "备注",
+        "op": "contains",
+        "value": "基础软件服务费"
+      }
+    ]
+  },
+  {
+    "category": "淘金币软件服务费",
+    "conditions": [
+      {
+        "field": "备注",
+        "op": "contains",
+        "value": "淘金币软件服务费"
+      }
+    ]
+  },
+  {
+    "category": "百亿补贴软件服务费",
+    "conditions": [
+      {
+        "field": "备注",
+        "op": "contains",
+        "value": "百亿补贴软件服务费"
+      }
+    ]
+  },
+  {
+    "category": "品牌新享淘宝老客礼金",
+    "conditions": [
+      {
+        "field": "备注",
+        "op": "contains",
+        "value": "品牌新享淘宝老客礼金"
+      }
+    ]
+  },
+  {
+    "category": "交易收款",
+    "conditions": [
+      {
+        "field": "备注",
+        "op": "contains",
+        "value": "}打款"
+      }
+    ]
+  },
+  {
+    "category": "交易退款",
+    "conditions": [
+      {
+        "field": "备注",
+        "op": "contains",
+        "value": "}退款"
+      }
+    ]
+  },
+  {
+    "category": "提现",
+    "conditions": [
+      {
+        "field": "备注",
+        "op": "contains",
+        "value": "提现"
+      }
+    ]
+  },
+  {
+    "category": "品牌新享-首单拉新",
+    "conditions": [
+      {
+        "field": "备注",
+        "op": "contains",
+        "value": "品牌新享-首单拉新"
+      }
+    ]
+  },
+  {
+    "category": "先用后付技术服务费",
+    "conditions": [
+      {
+        "field": "备注",
+        "op": "contains",
+        "value": "先用后付技术服务费"
+      }
+    ]
+  },
+  {
+    "category": "限时红包代",
+    "conditions": [
+      {
+        "field": "备注",
+        "op": "contains",
+        "value": "限时红包代"
+      }
+    ]
+  },
+  {
+    "category": "消费券代付资金",
+    "conditions": [
+      {
+        "field": "备注",
+        "op": "contains",
+        "value": "消费券代付资金"
+      }
+    ]
+  }
+]

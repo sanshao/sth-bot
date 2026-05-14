@@ -5,7 +5,7 @@ from datetime import datetime
 from category_rules import assign_category_by_rules, assign_tax_rate
 
 
-def process_taobao_file(file_path, target_directory):
+def process_file(file_path, target_directory):
     print("当前文件：", file_path)
 
     # 读取Excel文件
@@ -26,7 +26,7 @@ def process_taobao_file(file_path, target_directory):
     # 计算净值并添加到新列
     df['净值'] = df['收入金额（+元）'] + df['支出金额（-元）']
 
-    json_path = os.path.join(os.path.dirname(__file__), 'taobao_rules.json')
+    json_path = os.path.join(os.path.dirname(__file__), 'rules/taobao_rules.json')
     with open(json_path, 'r', encoding='utf-8') as f:
         rules = json.load(f)
 
