@@ -1,0 +1,10 @@
+[
+  {
+    "category": "学生价技术服务费",
+    "condition": {
+      "field": "备注",
+      "op": "contains",
+      "value": "学生价技术服务费"
+    }
+  }
+]

@@ -1,0 +1,141 @@
+[
+  {
+    "category": "交易收款",
+    "condition": {
+      "field": "业务描述",
+      "op": "contains",
+      "value": "交易收入-订单收入"
+    }
+  },
+  {
+    "category": "交易收款-优惠券",
+    "condition": {
+      "field": "业务描述",
+      "op": "contains",
+      "value": "交易收入-优惠券结算"
+    }
+  },
+  {
+    "category": "交易退款",
+    "condition": {
+      "field": "业务描述",
+      "op": "contains",
+      "value": "交易退款-订单退款"
+    }
+  },
+  {
+    "category": "交易退款-优惠券",
+    "condition": {
+      "field": "业务描述",
+      "op": "contains",
+      "value": "交易退款-优惠券结算"
+    }
+  },
+  {
+    "category": "基础技术服务费",
+    "conditions": [
+      {
+        "field": "业务描述",
+        "op": "contains",
+        "value": "技术服务费-技术服务费"
+      },
+      {
+        "field": "业务描述",
+        "op": "contains",
+        "value": "技术服务费-基础技术服务费"
+      }
+    ]
+  },
+  {
+    "category": "百亿补贴技术服务费",
+    "condition": {
+      "field": "业务描述",
+      "op": "contains",
+      "value": "技术服务费-百亿补贴技术服务费"
+    }
+  },
+  {
+    "category": "售后补偿消费者",
+    "conditions": [
+      {
+        "field": "业务描述",
+        "op": "contains",
+        "value": "售后费用-小额打款"
+      },
+      {
+        "field": "业务描述",
+        "op": "contains",
+        "value": "售后费用-售后补偿消费者"
+      },
+      {
+        "field": "业务描述",
+        "op": "contains",
+        "value": "售后费用-欺诈发货"
+      }
+    ]
+  },
+  {
+    "category": "售后费用-运费补偿",
+    "condition": {
+      "field": "业务描述",
+      "op": "contains",
+      "value": "售后费用-运费补偿"
+    }
+  },
+  {
+    "category": "售后费用-延迟发货",
+    "condition": {
+      "field": "业务描述",
+      "op": "contains",
+      "value": "售后费用-延迟发货"
+    }
+  },
+  {
+    "category": "售后费用-虚假发货",
+    "condition": {
+      "field": "业务描述",
+      "op": "contains",
+      "value": "售后费用-虚假发货"
+    }
+  },
+  {
+    "category": "售后费用-缺货",
+    "condition": {
+      "field": "业务描述",
+      "op": "contains",
+      "value": "售后费用-缺货"
+    }
+  },
+  {
+    "category": "多多进宝",
+    "condition": {
+      "field": "业务描述",
+      "op": "contains",
+      "value": "营销费用-多多进宝"
+    }
+  },
+  {
+    "category": "推广充值",
+    "condition": {
+      "field": "业务描述",
+      "op": "contains",
+      "value": "转账-广告账户"
+    }
+  },
+  {
+    "category": "提现",
+    "condition": {
+      "field": "业务描述",
+      "op": "contains",
+      "value": "提现-提现申请"
+    }
+  },
+  {
+    "category": "交易收款-申诉",
+    "condition": {
+      "field": "业务描述",
+      "op": "contains",
+      "value": "其他收入-申诉补回"
+    }
+  }
+]
