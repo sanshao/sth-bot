@@ -81,3 +81,6 @@ def process_file(file_path, target_directory):
         pivot_table.to_excel(writer, sheet_name='透视', index=False)
 
     print(f"处理完成！新文件生成: {new_file_path}")
+    
+    # 将透视表打印到控制台
+    print(pivot_table)

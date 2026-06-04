@@ -35,5 +35,5 @@ def process_files_in_directory(directory):
 # 使用示例
 if __name__ == "__main__":
     current_dir = os.getcwd()
-    target_directory = os.path.join(current_dir, 'resource/2026/4')
+    target_directory = os.path.join(current_dir, 'resource/2026/支付宝-5月')
     process_files_in_directory(target_directory)
