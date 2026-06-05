@@ -1,4 +1,15 @@
 [
+    
+    {
+        "category": "淘菜菜-交易收款",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "MMC-处罚赔付-"
+            }
+        ]
+    },
     {
         "category": "淘菜菜-退款赔付",
         "conditions": [
@@ -149,6 +160,11 @@
                 "field": "备注",
                 "op": "contains",
                 "value": "MMC-交易补贴"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "C2M-交易补贴"
             }
         ]
     },
@@ -874,8 +890,29 @@
                 "field": "备注",
                 "op": "contains",
                 "value": "红包签到供应商cps佣金"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "逆向退款-精选淘客-"
             }
         ]
+    },
+    {
+        "category": "淘工厂-推广费",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "支付宝定向推广"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "红包签到供应商cps佣金"
+            }
+        ]
+
     },
     {
         "category": "淘工厂-托管费",
