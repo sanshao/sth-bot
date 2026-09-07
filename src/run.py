@@ -6,6 +6,7 @@ from tmall import process_file as process_tmall_file     # 导入天猫处理函
 from jd import process_file as process_jd_file        # 导入京东处理函数
 from pdd import process_file as process_pdd_file        # 导入拼多多处理函数
 from group import process_file as process_group_file    # 导入聚合处理函数
+from taobao_factory import process_file as process_taobao_factory_file    # 导入淘工厂处理函数
 
 def process_files_in_directory(directory):
     
@@ -22,7 +23,11 @@ def process_files_in_directory(directory):
         elif file_name.startswith("淘宝买菜") and file_name.endswith(".xlsx"):
             file_path = os.path.join(directory, file_name)
             process_taocc_file(file_path, target_directory)
-        elif file_name.startswith("淘") and file_name.endswith(".xlsx"):
+        elif file_name.startswith("淘工厂") and file_name.endswith(".xlsx"):
+            print(f"处理淘工厂文件: {file_name}")
+            file_path = os.path.join(directory, file_name)
+            process_taobao_factory_file(file_path, target_directory)
+        elif file_name.startswith("淘宝") and file_name.endswith(".xlsx"):
             file_path = os.path.join(directory, file_name)
             process_taobao_file(file_path, target_directory)
         elif file_name.startswith("天猫") and file_name.endswith(".xlsx"):
@@ -39,5 +44,5 @@ def process_files_in_directory(directory):
 # 使用示例
 if __name__ == "__main__":
     current_dir = os.getcwd()
-    target_directory = os.path.join(current_dir, 'resource/2026/支付宝-8月')
+    target_directory = os.path.join(current_dir, 'resource/2026/8')
     process_files_in_directory(target_directory)

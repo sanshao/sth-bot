@@ -1,131 +1,6 @@
 [
     
     {
-        "category": "淘菜菜-交易收款",
-        "conditions": [
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "MMC-处罚赔付-"
-            }
-        ]
-    },
-    {
-        "category": "淘菜菜-退款赔付",
-        "conditions": [
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "MMC-退款赔付"
-            }
-        ]
-    },
-    {
-        "category": "淘菜菜-退佣",
-        "conditions": [
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "MMC-逆向退佣"
-            }
-        ]
-    },
-    {
-        "category": "淘菜菜-交易补贴",
-        "conditions": [
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "MMC-交易补贴"
-            }
-        ]
-    },
-    {
-        "category": "淘菜菜-评价有礼服务费",
-        "conditions": [
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "MMC-评价有礼服务费"
-            }
-        ]
-    },
-    {
-        "category": "淘菜菜-售后客服服务费",
-        "conditions": [
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "MMC-技术服务费-售后客服服务费"
-            }
-        ]
-    },
-    {
-        "category": "淘菜菜-退款客服服务费",
-        "conditions": [
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "MMC-技术服务费-退款客服服务费"
-            }
-        ]
-    },
-    {
-        "category": "淘菜菜-直播推广服务费",
-        "conditions": [
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "MMC-正向扣款-直播推广服务费"
-            },
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "MMC-逆向退款-直播推广服务费"
-            }
-        ]
-    },
-    {
-        "category": "淘菜菜-售前客服服务费",
-        "conditions": [
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "MMC-技术服务费-售前客服服务费"
-            }
-        ]
-    },
-    {
-        "category": "淘菜菜-会员购佣金",
-        "conditions": [
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "MMC-正向扣佣-会员购佣金"
-            }
-        ]
-    },
-    {
-        "category": "淘菜菜-投流推广",
-        "conditions": [
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "MMC-正向扣佣-投流推广"
-            }
-        ]
-    },
-    {
-        "category": "淘菜菜-百亿补贴佣金",
-        "conditions": [
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "MMC-正向扣佣-百亿补贴佣金"
-            }
-        ]
-    },
-    {
         "category": "淘宝-学生价技术服务费",
         "condition": {
             "field": "备注",
@@ -154,17 +29,37 @@
         ]
     },
     {
+        "category": "淘工厂-投流推广",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "正向扣佣-投流推广"
+            }
+        ]
+    },
+    {
         "category": "淘工厂-交易补贴",
         "conditions": [
             {
                 "field": "备注",
                 "op": "contains",
-                "value": "MMC-交易补贴"
+                "value": "-交易补贴"
             },
             {
                 "field": "备注",
                 "op": "contains",
                 "value": "C2M-交易补贴"
+            }
+        ]
+    },
+    {
+        "category": "淘工厂-评价有礼服务费",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "评价有礼服务费"
             }
         ]
     },
@@ -175,6 +70,11 @@
                 "field": "备注",
                 "op": "contains",
                 "value": "C2M-逆向退款-直播推广服务费"
+            },
+            { 
+                "field": "备注",
+                "op": "contains",
+                "value": "正向扣款-直播推广服务费"
             }
         ]
     },
@@ -278,14 +178,6 @@
                 "value": "基金代发任务"
             }
         ]
-    },
-    {
-        "category": "在线支付",
-        "condition": {
-            "field": "业务类型",
-            "op": "eq",
-            "value": "在线支付"
-        }
     },
     {
         "category": "海那边-转账",
@@ -456,23 +348,6 @@
                 "value": "花呗|信用购"
             }
         ]
-    },
-    {
-        "category": "淘工厂-违约赔付",
-        "condition": {
-            "all": [
-                {
-                    "field": "备注",
-                    "op": "contains",
-                    "value": "淘特直营商家管理保证金"
-                },
-                {
-                    "field": "备注",
-                    "op": "contains",
-                    "value": "违约金扣罚"
-                }
-            ]
-        }
     },
     {
         "category": "淘宝-百亿服务费",
@@ -659,6 +534,33 @@
         }
     },
     {
+        "category": "淘工厂-违约赔付",
+        "condition": {
+            "all": [
+                {
+                    "field": "备注",
+                    "op": "contains",
+                    "value": "淘特直营商家管理保证金"
+                },
+                {
+                    "field": "备注",
+                    "op": "contains",
+                    "value": "违约金扣罚"
+                }
+            ]
+        }
+    },
+    {
+        "category": "淘工厂-商家处罚",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "商家处罚-处罚编号"
+            }
+        ]
+    },
+    {
         "category": "淘工厂-首单拉新",
         "conditions": [
             {
@@ -680,6 +582,16 @@
                 "field": "备注",
                 "op": "contains",
                 "value": "正向扣佣-品牌新享佣金"
+            }
+        ]
+    },
+    {
+        "category": "淘工厂-会员购佣金",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "正向扣佣-会员购佣金"
             }
         ]
     },
@@ -953,8 +865,8 @@
             {
                 "field": "备注",
                 "op": "contains",
-                "value": "账户充值-【协议扣款】- 自动充值"
-            },
+                "value": "账户充值-【协议扣款】- "
+            }, 
             {
                 "field": "备注",
                 "op": "contains",
@@ -1018,11 +930,28 @@
     },
     {
         "category": "淘工厂-技术服务费",
-        "condition": {
-            "field": "备注",
-            "op": "contains",
-            "value": "扣款用途：C2M-技术服务费"
-        }
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "扣款用途：C2M-技术服务费"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "技术服务费-售后客服服务费"
+            }
+        ]
+    },
+    {
+        "category": "淘工厂-严选优品软件技术服务费",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "严选优品软件技术服务费"
+            }
+        ]
     },
     {
         "category": "淘工厂-转运物流费",
@@ -1030,6 +959,14 @@
             "field": "备注",
             "op": "contains",
             "value": "新疆物流集运"
+        }
+    },
+    {
+        "category": "在线支付",
+        "condition": {
+            "field": "业务类型",
+            "op": "eq",
+            "value": "在线支付"
         }
     }
 ]
