@@ -889,6 +889,14 @@
         ]
     },
     {
+        "category": "淘工厂-淘客佣金",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "C2M-正向扣佣-精选淘客"
+        }
+    },
+    {
         "category": "淘工厂-淘宝佣金",
         "conditions": [
             {

@@ -1,125 +1,113 @@
 ---
 name: alipay-bill-classifier
-description: Use this skill when processing, organizing, classifying, or troubleshooting Taobao and Tmall Alipay Excel bills in this repository. It covers how to run src/run.py, how files are selected, where outputs are written, and where to read the detailed Taobao/Tmall classification rules.
+description: Use when processing, classifying, or troubleshooting e-commerce bill Excel files in this repository (淘宝店、淘工厂、天猫、淘宝买菜、聚合、京东、拼多多), or when adding/changing classification rules in src/rules/*.json. Covers running src/run.py, file routing, the JSON rule engine, tax-rate pivot splitting, and where each platform's ordered rule table lives.
 ---
 
 # Alipay Bill Classifier
 
-Use this skill for Taobao/Tmall Alipay bill整理、分类、透视汇总、规则排查或规则新增。
+Use this skill for 账单整理、分类、透视汇总、规则排查或规则新增.
 
-## Repository Context
+## Repository Map
 
-The implementation lives in:
-
-- `src/run.py`: batch entry point.
-- `src/taobao.py`: Taobao bill parser and classifier.
-- `src/tmall.py`: Tmall bill parser and classifier.
-- `src/category_rules.py`: shared rule engine.
-
-Dependencies are listed in `requirements.txt`; the key runtime packages are `pandas` and `openpyxl`.
-
-## Input Selection
-
-`src/run.py` processes Excel files from a target directory. By default, it uses:
-
-```python
-target_directory = os.path.join(current_dir, "resource/支付宝-3月")
-```
-
-Inside that directory:
-
-- Files whose name starts with `淘` and ends with `.xlsx` are processed by `process_taobao_file`.
-- Files whose name starts with `天猫` and ends with `.xlsx` are processed by `process_tmall_file`.
-- Other files are ignored.
-
-If the user provides another input directory, update the `target_directory` value in `src/run.py` or invoke `process_taobao_files_in_directory(directory)` directly from Python.
+| Path | Role |
+| --- | --- |
+| `src/run.py` | Batch entry point; routes files by name |
+| `src/taobao.py` / `taobao_factory.py` / `tmall.py` / `taocc.py` | Alipay bill processors (淘宝店 / 淘工厂 / 天猫 / 淘宝买菜) |
+| `src/group.py` | 聚合账单 processor |
+| `src/jd.py`, `src/pdd.py` | 京东 / 拼多多 processors (no rule file; see below) |
+| `src/category_rules.py` | Shared rule engine and tax-rate logic |
+| `src/rules/<platform>_rules.json` | Ordered classification rules — the source of truth |
+| `docs/gen_rule_docs.py` | Regenerates rule docs from the JSON files |
+| `docs/rule/README.md` | Human-facing overview (Chinese) |
 
 ## Run Workflow
 
-From the repository root:
+From the repository root (paths are resolved from the current working directory):
 
 ```bash
-uv venv
 source .venv/bin/activate
-pip install -r requirements.txt
+pip install -r requirements.txt   # first run only
 python src/run.py
 ```
 
-If dependencies are already installed, only run:
+The input directory is `target_directory` in `src/run.py` (currently `resource/2026/支付宝-10月`). Change it when the user points at another month or folder.
 
-```bash
-python src/run.py
-```
+## File Routing
 
-## Processing Behavior
+`src/run.py` checks each `.xlsx` file name in this order; the first match wins and other files are ignored:
 
-For each matched workbook:
+| Order | File name | Processor | Rules |
+| --- | --- | --- | --- |
+| 1 | contains `聚合` | `group.py` | `group_rules.json` |
+| 2 | starts with `淘宝买菜` | `taocc.py` | `taocc_rules.json` |
+| 3 | starts with `淘工厂` | `taobao_factory.py` | `taobao_factory_rules.json` |
+| 4 | starts with `淘宝` | `taobao.py` | `taobao_rules.json` |
+| 5 | starts with `天猫` | `tmall.py` | `tmall_rules.json` |
+| 6 | starts with `京东` | `jd.py` | none — `费用项` is the category |
+| 7 | starts with `拼多多` | `pdd.py` | none — `业务描述` is the category |
 
-1. Read the first sheet.
-2. Use row 5 as the header (`header=4`) and skip the last 4 footer rows.
-3. Strip whitespace from column names.
-4. Add `净值 = 收入金额（+元） + 支出金额（-元）`.
-5. Add `分类` by matching ordered rules.
+`pdd_rules.json` is only used by `src/pdd1.py`, which `run.py` does not call. `jd_rules.json` is not used by any processor.
+
+## Processing Behavior (Alipay bills)
+
+1. Read the first sheet with `header=4` and `skipfooter=4`; strip column names.
+2. 淘工厂 only: when `业务类型 == 在线支付` and `备注` is blank, copy `商品名称` into `备注`.
+3. `净值 = 收入金额（+元） + 支出金额（-元）`.
+4. `分类` from the ordered rules; default `其它-未分类`.
+5. `税率` from `商品名称` (13% / 9% / blank) for categories containing `交易收款`, `限时红包`, `多买多省`.
 6. Move `净值` between `支出金额（-元）` and `账户余额（元）`.
-7. Create a pivot table grouped by `分类`, summing `净值`.
-8. Append a `总和` row to the pivot table.
+7. Pivot `净值` sum and `行数` by category. Categories containing `交易收款`, `限时红包`, `消费券` with a non-empty tax rate get a suffix (e.g. `淘宝-交易收款9%`). Append a `总和` row.
 
-Rules are evaluated in order. The first matching rule wins. If no rule matches, the category is `其它-未分类`.
+聚合 uses `净值 = 收入金额(元) - 支出金额(元)` and fixed 14-column naming when the header row is missing. Read `docs/rule/README.md` for full details, including the tax keyword lists.
 
 ## Output
 
-Each run creates a timestamped output directory:
+`output/整理/YYYYMMDD_HHMMSS/<original-name>_整理.xlsx` with sheets `整理` (rows + computed columns) and `透视` (pivot + `总和`).
 
-```text
-output/整理/YYYYMMDD_HHMMSS/
+## Rule Engine
+
+Each rule file is an ordered JSON array. **The first matching rule wins.**
+
+```json
+{ "category": "淘工厂-淘客佣金",
+  "condition": { "field": "备注", "op": "contains", "value": "C2M-正向扣佣-精选淘客" } }
 ```
 
-Each processed workbook is written as:
-
-```text
-<original-name>_整理.xlsx
-```
-
-The output workbook has two sheets:
-
-- `整理`: original rows plus computed `净值` and `分类`.
-- `透视`: sum of `净值` by `分类`, with a final `总和` row.
+- `condition`: one condition. `conditions`: array, matches if **any** item matches.
+- Nesting: `{"all": [...]}`, `{"any": [...]}`, `{"not": {...}}`.
+- Operators: `contains`, `startswith`, `endswith`, `eq`/`=`/`==`, `ne`/`!=`, `>`, `>=`, `<`, `<=`, `in`, `not_in`.
+- Text is compared after `strip()`; numeric operators return false when a value is not numeric; blank cells are empty strings.
 
 ## Classification References
 
-Read only the relevant reference file when changing or explaining rules:
+Read only the reference for the platform involved. Each one lists rules in priority order and ends with a list of conditions that can never match:
 
-- Taobao rules: `references/taobao-rules.md`
-- Tmall rules: `references/tmall-rules.md`
+| Platform | Reference |
+| --- | --- |
+| 淘宝店 | `references/taobao-rules.md` |
+| 淘工厂店 | `references/taobao_factory-rules.md` |
+| 天猫店 | `references/tmall-rules.md` |
+| 淘宝买菜 | `references/taocc-rules.md` |
+| 聚合账单 | `references/group-rules.md` |
+| 拼多多 | `references/pdd-rules.md` |
+| 京东 | `references/jd-rules.md` |
 
-The reference files preserve the current rule order. Keep that order meaningful because it controls priority.
+## Adding or Changing Rules
 
-## Rule Maintenance Guidance
+1. Identify which platform files the user means (e.g. "淘宝店和淘工厂店" means `taobao_rules.json` and `taobao_factory_rules.json`). The same category often exists in several files; update every requested file.
+2. **Order matters.** If the new keyword contains an existing rule's keyword (e.g. `C2M-正向扣佣-精选淘客` contains `正向扣佣-精选淘客-`), insert the new rule *before* that existing rule. Otherwise the existing rule swallows it.
+3. To add a keyword to an existing category, append to its `conditions` array; convert `condition` to `conditions` when it needs more than one entry.
+4. Keep the JSON strict: no trailing commas, no comments (`json.load` will fail and the whole platform breaks).
+5. Verify with a sample row:
 
-When adding or changing rules:
+   ```bash
+   python -c "
+   import json, sys, pandas as pd
+   sys.path.insert(0, 'src')
+   from category_rules import assign_category_by_rules
+   rules = json.load(open('src/rules/taobao_factory_rules.json'))
+   print(assign_category_by_rules(pd.Series({'备注': '示例备注'}), rules))
+   "
+   ```
 
-- Prefer editing `explicit_rules` for compound conditions, account-specific conditions, non-`备注` fields, numeric comparisons, or exclusions.
-- Prefer editing `category_mapping` for simple keyword matching against `备注`.
-- Add high-priority or narrow rules before broad rules.
-- Preserve the default behavior of returning `其它-未分类` when nothing matches.
-- After changes, run the script against a representative workbook and inspect both `整理` and `透视`.
-
-The shared rule condition structure supports:
-
-- Text operations: `contains`, `startswith`, `endswith`, `eq`, `=`, `==`, `ne`, `!=`.
-- Numeric operations: `>`, `>=`, `<`, `<=`.
-- Logical composition: `all`, `any`, `not`.
-
-Example compound rule:
-
-```python
-{
-    "category": "示例分类",
-    "condition": {
-        "all": [
-            {"field": "备注", "op": "contains", "value": "关键字"},
-            {"field": "支出金额（-元）", "op": "<", "value": 0},
-        ]
-    },
-}
-```
+6. Regenerate the docs with `python docs/gen_rule_docs.py`. This rewrites `docs/rule/<platform>.md` and `references/<platform>-rules.md`, and prints how many unreachable conditions each platform has.

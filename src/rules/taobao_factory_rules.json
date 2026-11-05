@@ -801,6 +801,14 @@
         ]
     },
     {
+        "category": "淘工厂-淘客佣金",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "C2M-正向扣佣-精选淘客"
+        }
+    },
+    {
         "category": "淘工厂-淘宝佣金",
         "conditions": [
             {
@@ -821,7 +829,7 @@
         ]
     },
     {
-        "category": "淘工厂-推广费",
+        "category": "淘工厂-支付宝推广费",
         "conditions": [
             {
                 "field": "备注",
@@ -860,17 +868,22 @@
         ]
     },
     {
+        "category": "淘工厂-客服费",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "-技术服务费-售前客服服务费"
+            }
+        ]
+    },
+    {
         "category": "淘工厂-推广充值",
         "conditions": [
             {
                 "field": "备注",
                 "op": "contains",
                 "value": "账户充值-【协议扣款】- "
-            }, 
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "-技术服务费-售前客服服务费-账单编号"
             }
         ]
     },
