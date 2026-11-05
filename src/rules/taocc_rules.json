@@ -1,6 +1,6 @@
 [
     {
-        "category": "淘菜菜-淘金币软件服务费",
+        "category": "淘宝买菜-淘金币软件服务费",
         "conditions": [
             {
                 "field": "商品名称",
@@ -10,7 +10,7 @@
         ]
     },
     {
-        "category": "淘菜菜-先用后付服务费",
+        "category": "淘宝买菜-先用后付服务费",
         "conditions": [
             {
                 "field": "商品名称",
@@ -26,7 +26,7 @@
     },
     
     {
-        "category": "淘菜菜-促销",
+        "category": "淘宝买菜-促销",
         "conditions": [
             {
                 "field": "商品名称",
@@ -42,7 +42,7 @@
     },
     
     {
-        "category": "淘菜菜-交易收款",
+        "category": "淘宝买菜-交易收款",
         "conditions": [
             {
                 "field": "备注",
@@ -52,7 +52,7 @@
         ]
     },
     {
-        "category": "淘菜菜-退款赔付",
+        "category": "淘宝买菜-退款赔付",
         "conditions": [
             {
                 "field": "备注",
@@ -62,7 +62,7 @@
         ]
     },
     {
-        "category": "淘菜菜-退佣",
+        "category": "淘宝买菜-退佣",
         "conditions": [
             {
                 "field": "备注",
@@ -72,7 +72,7 @@
         ]
     },
     {
-        "category": "淘菜菜-交易补贴",
+        "category": "淘宝买菜-交易补贴",
         "conditions": [
             {
                 "field": "备注",
@@ -82,7 +82,7 @@
         ]
     },
     {
-        "category": "淘菜菜-评价有礼服务费",
+        "category": "淘宝买菜-评价有礼服务费",
         "conditions": [
             {
                 "field": "备注",
@@ -92,7 +92,7 @@
         ]
     },
     {
-        "category": "淘菜菜-售后客服服务费",
+        "category": "淘宝买菜-售后客服服务费",
         "conditions": [
             {
                 "field": "备注",
@@ -102,7 +102,7 @@
         ]
     },
     {
-        "category": "淘菜菜-退款客服服务费",
+        "category": "淘宝买菜-退款客服服务费",
         "conditions": [
             {
                 "field": "备注",
@@ -112,7 +112,7 @@
         ]
     },
     {
-        "category": "淘菜菜-运费险",
+        "category": "淘宝买菜-运费险",
         "condition": {
             "field": "商品名称",
             "op": "contains",
@@ -120,7 +120,7 @@
         }
     },
     {
-        "category": "淘菜菜-直播推广服务费",
+        "category": "淘宝买菜-直播推广服务费",
         "conditions": [
             {
                 "field": "备注",
@@ -145,7 +145,7 @@
         ]
     },
     {
-        "category": "淘菜菜-售前客服服务费",
+        "category": "淘宝买菜-售前客服服务费",
         "conditions": [
             {
                 "field": "备注",
@@ -155,7 +155,7 @@
         ]
     },
     {
-        "category": "淘菜菜-会员购佣金",
+        "category": "淘宝买菜-会员购佣金",
         "conditions": [
             {
                 "field": "备注",
@@ -165,7 +165,7 @@
         ]
     },
     {
-        "category": "淘菜菜-投流推广",
+        "category": "淘宝买菜-投流推广",
         "conditions": [
             {
                 "field": "备注",
@@ -180,7 +180,7 @@
         ]
     },
     {
-        "category": "淘菜菜-百亿补贴佣金",
+        "category": "淘宝买菜-百亿补贴佣金",
         "conditions": [
             {
                 "field": "备注",
@@ -190,7 +190,15 @@
         ]
     },
     {
-        "category": "淘宝-学生价技术服务费",
+        "category": "淘宝买菜-商家处罚",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "MMC-商家处罚"
+        }
+    },
+    {
+        "category": "淘宝买菜-学生价技术服务费",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -198,7 +206,7 @@
         }
     },
     {
-        "category": "淘宝-保证金充值",
+        "category": "淘宝买菜-保证金充值",
         "conditions": [
             {
                 "field": "备注",
@@ -218,13 +226,8 @@
         ]
     },
     {
-        "category": "淘工厂-交易补贴",
+        "category": "淘宝买菜-交易补贴",
         "conditions": [
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "MMC-交易补贴"
-            },
             {
                 "field": "备注",
                 "op": "contains",
@@ -233,7 +236,7 @@
         ]
     },
     {
-        "category": "淘工厂-直播推广服务费",
+        "category": "淘宝买菜-直播推广服务费",
         "conditions": [
             {
                 "field": "备注",
@@ -243,7 +246,7 @@
         ]
     },
     {
-        "category": "淘工厂-直通车充值",
+        "category": "淘宝买菜-直通车充值",
         "condition": {
             "field": "商品名称",
             "op": "contains",
@@ -267,7 +270,7 @@
         }
     },
     {
-        "category": "淘宝-交易收款平台补贴",
+        "category": "淘宝买菜-交易收款平台补贴",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -275,7 +278,7 @@
         }
     },
     {
-        "category": "淘宝-百亿服务费百补特定软件",
+        "category": "淘宝买菜-百亿服务费百补特定软件",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -283,7 +286,7 @@
         }
     },
     {
-        "category": "淘宝-百亿服务费百补超链增值",
+        "category": "淘宝买菜-百亿服务费百补超链增值",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -291,7 +294,7 @@
         }
     },
     {
-        "category": "淘宝-消费券",
+        "category": "淘宝买菜-消费券",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -299,7 +302,7 @@
         }
     },
     {
-        "category": "淘宝-交易收款",
+        "category": "淘宝买菜-交易收款",
         "conditions": [
             {
                 "field": "业务类型",
@@ -314,7 +317,7 @@
         ]
     },
     {
-        "category": "提现",
+        "category": "淘宝买菜-提现",
         "conditions": [
             {
                 "field": "业务类型",
@@ -329,27 +332,14 @@
         ]
     },
     {
-        "category": "结息",
+        "category": "淘宝买菜-结息",
         "conditions": [
             {
                 "field": "业务类型",
                 "op": "eq",
                 "value": "结息"
-            },
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "基金代发任务"
             }
         ]
-    },
-    {
-        "category": "在线支付",
-        "condition": {
-            "field": "业务类型",
-            "op": "eq",
-            "value": "在线支付"
-        }
     },
     {
         "category": "海那边-转账",
@@ -522,7 +512,7 @@
         ]
     },
     {
-        "category": "淘工厂-违约赔付",
+        "category": "淘宝买菜-违约赔付",
         "condition": {
             "all": [
                 {
@@ -539,7 +529,7 @@
         }
     },
     {
-        "category": "淘宝-百亿服务费",
+        "category": "淘宝买菜-百亿服务费",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -547,7 +537,7 @@
         }
     },
     {
-        "category": "淘宝-多买多省",
+        "category": "淘宝买菜-多买多省",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -555,7 +545,7 @@
         }
     },
     {
-        "category": "淘宝-限时红包",
+        "category": "淘宝买菜-限时红包",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -563,7 +553,7 @@
         }
     },
     {
-        "category": "淘宝-淘金币",
+        "category": "淘宝买菜-淘金币",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -571,7 +561,7 @@
         }
     },
     {
-        "category": "淘宝-保险费",
+        "category": "淘宝买菜-保险费",
         "conditions": [
             {
                 "field": "备注",
@@ -586,7 +576,7 @@
         ]
     },
     {
-        "category": "淘宝-保证金解冻",
+        "category": "淘宝买菜-保证金解冻",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -594,7 +584,7 @@
         }
     },
     {
-        "category": "淘宝-大促软件服务费",
+        "category": "淘宝买菜-大促软件服务费",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -602,7 +592,7 @@
         }
     },
     {
-        "category": "淘宝-官方竞价软件费",
+        "category": "淘宝买菜-官方竞价软件费",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -610,7 +600,7 @@
         }
     },
     {
-        "category": "淘宝-基础软件服务费",
+        "category": "淘宝买菜-基础软件服务费",
         "conditions": [
             {
                 "field": "备注",
@@ -625,7 +615,7 @@
         ]
     },
     {
-        "category": "淘宝-公益",
+        "category": "淘宝买菜-公益",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -633,7 +623,7 @@
         }
     },
     {
-        "category": "淘宝-交易退款",
+        "category": "淘宝买菜-交易退款",
         "conditions": [
             {
                 "field": "备注",
@@ -648,7 +638,7 @@
         ]
     },
     {
-        "category": "淘宝-保证金退款",
+        "category": "淘宝买菜-保证金退款",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -656,7 +646,7 @@
         }
     },
     {
-        "category": "淘宝-保证金退邮费",
+        "category": "淘宝买菜-保证金退邮费",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -664,7 +654,7 @@
         }
     },
     {
-        "category": "淘宝-跨境服务费",
+        "category": "淘宝买菜-跨境服务费",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -672,7 +662,7 @@
         }
     },
     {
-        "category": "淘宝-赔付",
+        "category": "淘宝买菜-赔付",
         "conditions": [
             {
                 "field": "备注",
@@ -707,7 +697,7 @@
         ]
     },
     {
-        "category": "淘宝-虚假发货赔付",
+        "category": "淘宝买菜-虚假发货赔付",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -715,7 +705,7 @@
         }
     },
     {
-        "category": "淘宝-品牌护肤赤兔",
+        "category": "淘宝买菜-品牌护肤赤兔",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -723,7 +713,7 @@
         }
     },
     {
-        "category": "淘宝-首单拉新",
+        "category": "淘宝买菜-首单拉新",
         "conditions": [
             {
                 "field": "备注",
@@ -743,7 +733,7 @@
         ]
     },
     {
-        "category": "淘宝-淘宝客佣金",
+        "category": "淘宝买菜-淘宝客佣金",
         "conditions": [
             {
                 "field": "备注",
@@ -763,7 +753,7 @@
         ]
     },
     {
-        "category": "淘宝-万相台充值",
+        "category": "淘宝买菜-万相台充值",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -771,7 +761,7 @@
         }
     },
     {
-        "category": "淘宝-万相台退款",
+        "category": "淘宝买菜-万相台退款",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -779,7 +769,7 @@
         }
     },
     {
-        "category": "淘宝-转运物流费",
+        "category": "淘宝买菜-转运物流费",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -787,7 +777,7 @@
         }
     },
     {
-        "category": "淘宝-每日必买服务费",
+        "category": "淘宝买菜-每日必买服务费",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -795,7 +785,7 @@
         }
     },
     {
-        "category": "淘宝-物流轨迹异常",
+        "category": "淘宝买菜-物流轨迹异常",
         "conditions": [
             {
                 "field": "备注",
@@ -810,7 +800,7 @@
         ]
     },
     {
-        "category": "淘宝-代购费",
+        "category": "淘宝买菜-代购费",
         "conditions": [
             {
                 "field": "备注",
@@ -820,7 +810,22 @@
         ]
     },
     {
-        "category": "淘工厂-托管充值",
+        "category": "淘宝买菜-托管账户充值",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "扣款用途：账户充值-工作台充值"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "扣款用途：账户充值-自动充值"
+            }
+        ]
+    },
+    {
+        "category": "淘宝买菜-托管充值",
         "conditions": [
             {
                 "field": "备注",
@@ -840,7 +845,30 @@
         ]
     },
     {
-        "category": "淘工厂-交易收款",
+        "category": "淘宝买菜-推广充值",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "账户充值-【协议扣款】- "
+        }
+    },
+    {
+        "category": "淘宝买菜-交易退款",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "分账退回"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "淘特直营保证金履约险_追偿款"
+            }
+        ]
+    },
+    {
+        "category": "淘宝买菜-交易收款",
         "conditions": [
             {
                 "field": "备注",
@@ -865,22 +893,7 @@
         ]
     },
     {
-        "category": "淘工厂-交易退款",
-        "conditions": [
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "分账退回"
-            },
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "淘特直营保证金履约险_追偿款"
-            }
-        ]
-    },
-    {
-        "category": "淘工厂-赔付",
+        "category": "淘宝买菜-赔付",
         "conditions": [
             {
                 "field": "备注",
@@ -901,11 +914,16 @@
                 "field": "备注",
                 "op": "contains",
                 "value": "扣款用途：C2M-处罚赔付"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "赔付追缴"
             }
         ]
     },
     {
-        "category": "淘工厂-商家出资补贴",
+        "category": "淘宝买菜-商家出资补贴",
         "conditions": [
             {
                 "field": "备注",
@@ -920,7 +938,7 @@
         ]
     },
     {
-        "category": "淘工厂-赠品营销费",
+        "category": "淘宝买菜-赠品营销费",
         "conditions": [
             {
                 "field": "备注",
@@ -935,7 +953,7 @@
         ]
     },
     {
-        "category": "淘工厂-淘宝佣金",
+        "category": "淘宝买菜-淘宝佣金",
         "conditions": [
             {
                 "field": "备注",
@@ -955,23 +973,17 @@
         ]
     },
     {
-        "category": "淘工厂-推广费",
+        "category": "淘宝买菜-推广费",
         "conditions": [
             {
                 "field": "备注",
                 "op": "contains",
                 "value": "支付宝定向推广"
-            },
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "红包签到供应商cps佣金"
             }
         ]
-
     },
     {
-        "category": "淘工厂-托管费",
+        "category": "淘宝买菜-托管费",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -979,22 +991,7 @@
         }
     },
     {
-        "category": "淘工厂-托管账户充值",
-        "conditions": [
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "扣款用途：账户充值-工作台充值"
-            },
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "扣款用途：账户充值-自动充值"
-            }
-        ]
-    },
-    {
-        "category": "淘工厂-先用后付",
+        "category": "淘宝买菜-先用后付",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -1002,7 +999,7 @@
         }
     },
     {
-        "category": "淘宝-先用后付服务费",
+        "category": "淘宝买菜-先用后付服务费",
         "conditions": [
             {
                 "field": "备注",
@@ -1017,7 +1014,7 @@
         ]
     },
     {
-        "category": "淘工厂-运费险",
+        "category": "淘宝买菜-运费险",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -1048,7 +1045,7 @@
         ]
     },
     {
-        "category": "淘工厂-技术服务费",
+        "category": "淘宝买菜-技术服务费",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -1056,11 +1053,19 @@
         }
     },
     {
-        "category": "淘工厂-转运物流费",
+        "category": "淘宝买菜-转运物流费",
         "condition": {
             "field": "备注",
             "op": "contains",
             "value": "新疆物流集运"
+        }
+    },
+    {
+        "category": "淘宝买菜-在线支付",
+        "condition": {
+            "field": "业务类型",
+            "op": "eq",
+            "value": "在线支付"
         }
     }
 ]

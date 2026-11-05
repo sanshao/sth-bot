@@ -159,11 +159,6 @@
             {
                 "field": "备注",
                 "op": "contains",
-                "value": "MMC-交易补贴"
-            },
-            {
-                "field": "备注",
-                "op": "contains",
                 "value": "C2M-交易补贴"
             }
         ]
@@ -271,11 +266,6 @@
                 "field": "业务类型",
                 "op": "eq",
                 "value": "结息"
-            },
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "基金代发任务"
             }
         ]
     },
@@ -761,6 +751,21 @@
         ]
     },
     {
+        "category": "淘工厂-托管账户充值",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "扣款用途：账户充值-工作台充值"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "扣款用途：账户充值-自动充值"
+            }
+        ]
+    },
+    {
         "category": "淘工厂-托管充值",
         "conditions": [
             {
@@ -923,14 +928,8 @@
                 "field": "备注",
                 "op": "contains",
                 "value": "支付宝定向推广"
-            },
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "红包签到供应商cps佣金"
             }
         ]
-
     },
     {
         "category": "淘工厂-托管费",
@@ -939,21 +938,6 @@
             "op": "contains",
             "value": "商品运营托管推广服务费"
         }
-    },
-    {
-        "category": "淘工厂-托管账户充值",
-        "conditions": [
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "扣款用途：账户充值-工作台充值"
-            },
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "扣款用途：账户充值-自动充值"
-            }
-        ]
     },
     {
         "category": "淘工厂-推广充值",

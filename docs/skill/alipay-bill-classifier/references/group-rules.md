@@ -1,4 +1,4 @@
-# 聚合账单账单分类规则
+# 聚合账单分类规则
 
 > 本文档由 `docs/gen_rule_docs.py` 根据 `src/rules/group_rules.json` 自动生成，请勿手动修改规则表；修改 JSON 后重新运行脚本即可。
 

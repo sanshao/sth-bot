@@ -1,7 +1,7 @@
 [
     
     {
-        "category": "淘宝-学生价技术服务费",
+        "category": "淘工厂-学生价技术服务费",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -9,7 +9,7 @@
         }
     },
     {
-        "category": "淘宝-保证金充值",
+        "category": "淘工厂-保证金充值",
         "conditions": [
             {
                 "field": "备注",
@@ -60,6 +60,11 @@
                 "field": "备注",
                 "op": "contains",
                 "value": "评价有礼服务费"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "评价商家返现金"
             }
         ]
     },
@@ -103,7 +108,7 @@
         }
     },
     {
-        "category": "淘宝-交易收款平台补贴",
+        "category": "淘工厂-交易收款平台补贴",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -111,7 +116,7 @@
         }
     },
     {
-        "category": "淘宝-百亿服务费百补特定软件",
+        "category": "淘工厂-百亿服务费百补特定软件",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -119,7 +124,7 @@
         }
     },
     {
-        "category": "淘宝-百亿服务费百补超链增值",
+        "category": "淘工厂-百亿服务费百补超链增值",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -127,7 +132,7 @@
         }
     },
     {
-        "category": "淘宝-消费券",
+        "category": "淘工厂-消费券",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -135,7 +140,7 @@
         }
     },
     {
-        "category": "淘宝-交易收款",
+        "category": "淘工厂-交易收款",
         "conditions": [
             {
                 "field": "业务类型",
@@ -150,7 +155,7 @@
         ]
     },
     {
-        "category": "提现",
+        "category": "淘工厂-提现",
         "conditions": [
             {
                 "field": "业务类型",
@@ -165,17 +170,12 @@
         ]
     },
     {
-        "category": "结息",
+        "category": "淘工厂-结息",
         "conditions": [
             {
                 "field": "业务类型",
                 "op": "eq",
                 "value": "结息"
-            },
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "基金代发任务"
             }
         ]
     },
@@ -350,7 +350,7 @@
         ]
     },
     {
-        "category": "淘宝-百亿服务费",
+        "category": "淘工厂-百亿服务费",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -358,7 +358,7 @@
         }
     },
     {
-        "category": "淘宝-多买多省",
+        "category": "淘工厂-多买多省",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -366,7 +366,7 @@
         }
     },
     {
-        "category": "淘宝-限时红包",
+        "category": "淘工厂-限时红包",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -374,7 +374,7 @@
         }
     },
     {
-        "category": "淘宝-淘金币",
+        "category": "淘工厂-淘金币",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -382,7 +382,7 @@
         }
     },
     {
-        "category": "淘宝-保险费",
+        "category": "淘工厂-保险费",
         "conditions": [
             {
                 "field": "备注",
@@ -397,7 +397,7 @@
         ]
     },
     {
-        "category": "淘宝-保证金解冻",
+        "category": "淘工厂-保证金解冻",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -405,7 +405,7 @@
         }
     },
     {
-        "category": "淘宝-大促软件服务费",
+        "category": "淘工厂-大促软件服务费",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -413,7 +413,7 @@
         }
     },
     {
-        "category": "淘宝-官方竞价软件费",
+        "category": "淘工厂-官方竞价软件费",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -421,7 +421,7 @@
         }
     },
     {
-        "category": "淘宝-基础软件服务费",
+        "category": "淘工厂-基础软件服务费",
         "conditions": [
             {
                 "field": "备注",
@@ -436,7 +436,7 @@
         ]
     },
     {
-        "category": "淘宝-公益",
+        "category": "淘工厂-公益",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -444,7 +444,7 @@
         }
     },
     {
-        "category": "淘宝-交易退款",
+        "category": "淘工厂-交易退款",
         "conditions": [
             {
                 "field": "备注",
@@ -459,7 +459,7 @@
         ]
     },
     {
-        "category": "淘宝-保证金退款",
+        "category": "淘工厂-保证金退款",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -467,7 +467,7 @@
         }
     },
     {
-        "category": "淘宝-保证金退邮费",
+        "category": "淘工厂-保证金退邮费",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -475,7 +475,7 @@
         }
     },
     {
-        "category": "淘宝-跨境服务费",
+        "category": "淘工厂-跨境服务费",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -483,7 +483,7 @@
         }
     },
     {
-        "category": "淘宝-赔付",
+        "category": "淘工厂-赔付",
         "conditions": [
             {
                 "field": "备注",
@@ -518,7 +518,7 @@
         ]
     },
     {
-        "category": "淘宝-虚假发货赔付",
+        "category": "淘工厂-虚假发货赔付",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -526,7 +526,7 @@
         }
     },
     {
-        "category": "淘-品牌护肤赤兔",
+        "category": "淘工厂-品牌护肤赤兔",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -596,7 +596,7 @@
         ]
     },
     {
-        "category": "淘宝-淘宝客佣金",
+        "category": "淘工厂-淘宝客佣金",
         "conditions": [
             {
                 "field": "备注",
@@ -616,7 +616,7 @@
         ]
     },
     {
-        "category": "淘宝-万相台充值",
+        "category": "淘工厂-万相台充值",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -624,7 +624,7 @@
         }
     },
     {
-        "category": "淘宝-万相台退款",
+        "category": "淘工厂-万相台退款",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -632,7 +632,7 @@
         }
     },
     {
-        "category": "淘宝-转运物流费",
+        "category": "淘工厂-转运物流费",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -640,7 +640,7 @@
         }
     },
     {
-        "category": "淘宝-每日必买服务费",
+        "category": "淘工厂-每日必买服务费",
         "condition": {
             "field": "备注",
             "op": "contains",
@@ -648,7 +648,7 @@
         }
     },
     {
-        "category": "淘宝-物流轨迹异常",
+        "category": "淘工厂-物流轨迹异常",
         "conditions": [
             {
                 "field": "备注",
@@ -663,12 +663,27 @@
         ]
     },
     {
-        "category": "淘宝-代购费",
+        "category": "淘工厂-代购费",
         "conditions": [
             {
                 "field": "备注",
                 "op": "contains",
                 "value": "代购费"
+            }
+        ]
+    },
+    {
+        "category": "淘工厂-托管账户充值",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "扣款用途：账户充值-工作台充值"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "扣款用途：账户充值-自动充值"
             }
         ]
     },
@@ -825,6 +840,16 @@
                 "field": "备注",
                 "op": "contains",
                 "value": "逆向退款-精选淘客-"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "正向扣佣-红包签到佣金"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "逆向退佣-红包签到佣金"
             }
         ]
     },
@@ -835,14 +860,8 @@
                 "field": "备注",
                 "op": "contains",
                 "value": "支付宝定向推广"
-            },
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "红包签到供应商cps佣金"
             }
         ]
-
     },
     {
         "category": "淘工厂-托管费",
@@ -853,27 +872,22 @@
         }
     },
     {
-        "category": "淘工厂-托管账户充值",
-        "conditions": [
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "扣款用途：账户充值-工作台充值"
-            },
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "扣款用途：账户充值-自动充值"
-            }
-        ]
-    },
-    {
         "category": "淘工厂-客服费",
         "conditions": [
             {
                 "field": "备注",
                 "op": "contains",
                 "value": "-技术服务费-售前客服服务费"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "-技术服务费-售后客服服务费"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "-技术服务费-退款客服服务费"
             }
         ]
     },
@@ -896,7 +910,7 @@
         }
     },
     {
-        "category": "淘宝-先用后付服务费",
+        "category": "淘工厂-先用后付服务费",
         "conditions": [
             {
                 "field": "备注",
@@ -975,7 +989,7 @@
         }
     },
     {
-        "category": "在线支付",
+        "category": "淘工厂-在线支付",
         "condition": {
             "field": "业务类型",
             "op": "eq",

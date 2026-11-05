@@ -20,11 +20,10 @@ def process_file(file_path, target_directory):
     # 清理列名，去除前后空格
     df.columns = df.columns.str.strip()
 
-    # 在线支付的备注数据被平台写入商品名称，暂时用商品名称填充备注以便规则匹配
+    # 平台常把说明写在商品名称而备注为空，用商品名称填充备注以便规则匹配
     # 备注常为空白/制表符而非 NaN，不能用 isna() 判断
     remark_empty = df['备注'].isna() | (df['备注'].astype(str).str.strip() == '')
-    online_payment_mask = (df['业务类型'] == '在线支付') & remark_empty
-    df.loc[online_payment_mask, '备注'] = df.loc[online_payment_mask, '商品名称']
+    df.loc[remark_empty, '备注'] = df.loc[remark_empty, '商品名称']
 
     # 计算净值并添加到新列
     df['净值'] = df['收入金额（+元）'] + df['支出金额（-元）']

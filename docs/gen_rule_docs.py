@@ -17,6 +17,7 @@ REF_DIR = os.path.join(ROOT, "docs", "skill", "alipay-bill-classifier", "referen
 ALIPAY_STEPS = [
     "读取第一个工作表，以第 5 行为表头（`header=4`），跳过末尾 4 行汇总。",
     "清理列名两侧空格。",
+    "`备注` 为空（含空白/制表符）时，用 `商品名称` 填充 `备注`，以便规则匹配。",
     "新增 `净值 = 收入金额（+元） + 支出金额（-元）`（支出在源表中已是负数）。",
     "按本文规则表从上到下匹配，新增 `分类` 列；未命中为 `其它-未分类`。",
     "按商品名称新增 `税率` 列（规则见总览文档的“税率与透视细分”）。",
@@ -35,9 +36,7 @@ PLATFORMS = {
         "title": "淘工厂店",
         "file": "文件名以 `淘工厂` 开头的 `.xlsx`",
         "module": "src/taobao_factory.py",
-        "steps": ALIPAY_STEPS[:2]
-        + ["`业务类型` 为 `在线支付` 且 `备注` 为空（含空白/制表符）时，用 `商品名称` 填充 `备注`，以便规则匹配。"]
-        + ALIPAY_STEPS[2:],
+        "steps": ALIPAY_STEPS,
     },
     "tmall": {
         "title": "天猫店",
@@ -46,13 +45,13 @@ PLATFORMS = {
         "steps": ALIPAY_STEPS,
     },
     "taocc": {
-        "title": "淘宝买菜（淘菜菜）",
+        "title": "淘宝买菜",
         "file": "文件名以 `淘宝买菜` 开头的 `.xlsx`",
         "module": "src/taocc.py",
         "steps": ALIPAY_STEPS,
     },
     "group": {
-        "title": "聚合账单",
+        "title": "聚合",
         "file": "文件名包含 `聚合` 的 `.xlsx`（优先级最高）",
         "module": "src/group.py",
         "steps": [
@@ -105,7 +104,10 @@ OP_TEXT = {
 
 
 def esc(text):
-    return str(text).replace("|", "\\|")
+    text = str(text)
+    for ch in ("\\", "|", "*", "_"):
+        text = text.replace(ch, "\\" + ch)
+    return text
 
 
 def render(cond):

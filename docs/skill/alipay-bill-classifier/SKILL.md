@@ -51,7 +51,7 @@ The input directory is `target_directory` in `src/run.py` (currently `resource/2
 ## Processing Behavior (Alipay bills)
 
 1. Read the first sheet with `header=4` and `skipfooter=4`; strip column names.
-2. 淘工厂 only: when `业务类型 == 在线支付` and `备注` is blank, copy `商品名称` into `备注`.
+2. When `备注` is blank (including whitespace/tab-only), copy `商品名称` into `备注`. Platforms often put the description of 在线支付 rows in `商品名称`. The generic `业务类型 == 在线支付` rule must stay last, otherwise it swallows those rows before the 备注 rules run.
 3. `净值 = 收入金额（+元） + 支出金额（-元）`.
 4. `分类` from the ordered rules; default `其它-未分类`.
 5. `税率` from `商品名称` (13% / 9% / blank) for categories containing `交易收款`, `限时红包`, `多买多省`.
@@ -80,7 +80,7 @@ Each rule file is an ordered JSON array. **The first matching rule wins.**
 
 ## Classification References
 
-Read only the reference for the platform involved. Each one lists rules in priority order and ends with a list of conditions that can never match:
+Read only the reference for the platform involved. Each one lists rules in priority order. When some conditions can never match, it ends with a `优先级提示` section listing them:
 
 | Platform | Reference |
 | --- | --- |
@@ -91,6 +91,15 @@ Read only the reference for the platform involved. Each one lists rules in prior
 | 聚合账单 | `references/group-rules.md` |
 | 拼多多 | `references/pdd-rules.md` |
 | 京东 | `references/jd-rules.md` |
+
+## Naming Convention
+
+| Rule file | Required prefix | Forbidden prefixes |
+| --- | --- | --- |
+| `taocc_rules.json` (淘宝买菜) | `淘宝买菜-` | `淘菜菜-`, `淘工厂-`, `淘宝-` |
+| `taobao_factory_rules.json` (淘工厂) | `淘工厂-` | `淘菜菜-`, `淘宝-` |
+
+Generic types also take the prefix (e.g. `淘工厂-提现`, `淘宝买菜-在线支付`). The only exceptions are counterparty-specific categories (personal transfers, 网商贷, 支付宝-花呗还款, 门道商家助手, etc.).
 
 ## Adding or Changing Rules
 

@@ -1,5 +1,81 @@
 [
     {
+        "category": "天猫-保证金赔付",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "天猫保证金-充值（代扣）-缺货"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "天猫保证金-充值（代扣）-红包冻结"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "天猫保证金-充值（代扣）-未按时开具发票"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "天猫保证金-充值（代扣）-物流轨迹超时"
+            }
+        ]
+    },
+    {
+        "category": "天猫-延迟发货赔付",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "天猫保证金-充值（代扣）-延迟发货"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "天猫保证金-充值（代扣）-物流轨迹异常"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "天猫保证金履约险追偿_"
+            }
+        ]
+    },
+    {
+        "category": "天猫-退货包运费",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "天猫保证金-充值（代扣）-退货邮费"
+        }
+    },
+    {
+        "category": "天猫-虚假发货赔付",
+        "conditions": [
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "虚假发货赔付"
+            },
+            {
+                "field": "备注",
+                "op": "contains",
+                "value": "天猫保证金-充值（代扣）-虚假发货"
+            }
+        ]
+    },
+    {
+        "category": "淘菜菜-交易补贴",
+        "condition": {
+            "field": "备注",
+            "op": "contains",
+            "value": "MMC-交易补贴"
+        }
+    },
+    {
         "category": "天猫-保证金充值",
         "conditions": [
             {
@@ -370,11 +446,6 @@
                         }
                     }
                 ]
-            },
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "DDD商家结算款"
             }
         ]
     },
@@ -436,67 +507,6 @@
             "field": "备注",
             "op": "contains",
             "value": "天猫保证金-解冻"
-        }
-    },
-    {
-        "category": "天猫-保证金赔付",
-        "conditions": [
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "天猫保证金-充值（代扣）-缺货"
-            },
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "天猫保证金-充值（代扣）-红包冻结"
-            },
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "天猫保证金-充值（代扣）-未按时开具发票"
-            },
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "天猫保证金-充值（代扣）-物流轨迹超时"
-            }
-        ]
-    },
-    {
-        "category": "天猫-延迟发货赔付",
-        "conditions": [
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "天猫保证金-充值（代扣）-延迟发货"
-            },
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "天猫保证金-充值（代扣）-物流轨迹异常"
-            },
-            {
-                "field": "备注",
-                "op": "contains",
-                "value": "天猫保证金履约险追偿_"
-            }
-        ]
-    },
-    {
-        "category": "天猫-退货包运费",
-        "condition": {
-            "field": "备注",
-            "op": "contains",
-            "value": "天猫保证金-充值（代扣）-退货邮费"
-        }
-    },
-    {
-        "category": "天猫-虚假发货赔付",
-        "condition": {
-            "field": "备注",
-            "op": "contains",
-            "value": "虚假发货赔付"
         }
     },
     {
